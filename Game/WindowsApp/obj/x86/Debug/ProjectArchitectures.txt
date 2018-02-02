@@ -1,1 +1,0 @@
-c:\users\rick - avr\documents\visual studio 2017\Projects\App\App\App.csproj;x86
