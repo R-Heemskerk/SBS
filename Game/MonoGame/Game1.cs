@@ -11,6 +11,7 @@ namespace MonoGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D dirtImage;
 
         public Game1()
         {
@@ -29,6 +30,8 @@ namespace MonoGame
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
@@ -40,7 +43,7 @@ namespace MonoGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            dirtImage = Content.Load<Texture2D>("Images/dirt");
         }
 
         /// <summary>
@@ -62,8 +65,6 @@ namespace MonoGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -75,7 +76,16 @@ namespace MonoGame
         {
             GraphicsDevice.Clear(Color.ForestGreen);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            int dirtImageSize = 180;
+
+            spriteBatch.Draw(dirtImage, new Rectangle(50, 50, dirtImageSize, dirtImageSize), Color.White);
+            spriteBatch.Draw(dirtImage, new Rectangle(50, 250, dirtImageSize, dirtImageSize), Color.White);
+            spriteBatch.Draw(dirtImage, new Rectangle(250, 50, dirtImageSize, dirtImageSize), Color.White);
+            spriteBatch.Draw(dirtImage, new Rectangle(250, 250, dirtImageSize, dirtImageSize), Color.White);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
