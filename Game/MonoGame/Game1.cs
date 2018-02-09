@@ -11,7 +11,8 @@ namespace MonoGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D dirtImage;
+        Texture2D dirtImage, ananasImage, plantzaadjesImage, avocadoImage, dragonfruitImage, granaatappelImage, guaveImage, lycheesImage, mangoImage, MarkoesaImage, papayaImage, passievruchtImage;
+        MenuManager menuManager = new MenuManager();
 
         public Game1()
         {
@@ -44,6 +45,20 @@ namespace MonoGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             dirtImage = Content.Load<Texture2D>("Images/dirt");
+            ananasImage = Content.Load<Texture2D>("Images/ananas");
+            plantzaadjesImage = Content.Load<Texture2D>("Images/plantzaadjes");
+            avocadoImage = Content.Load<Texture2D>("Images/avocado");
+            dragonfruitImage = Content.Load<Texture2D>("Images/dragonfruit");
+            granaatappelImage = Content.Load<Texture2D>("Images/granaatappel");
+            guaveImage = Content.Load<Texture2D>("Images/guave");
+            lycheesImage = Content.Load<Texture2D>("Images/lychees");
+            mangoImage = Content.Load<Texture2D>("Images/mango");
+            MarkoesaImage = Content.Load<Texture2D>("Images/Markoesa");
+            papayaImage = Content.Load<Texture2D>("Images/papaya");
+            passievruchtImage = Content.Load<Texture2D>("Images/passievrucht");
+            //Alle plaatjes van de vruchten. 
+
+
         }
 
         /// <summary>
@@ -85,6 +100,7 @@ namespace MonoGame
             spriteBatch.Draw(dirtImage, new Rectangle(250, 50, dirtImageSize, dirtImageSize), Color.White);
             spriteBatch.Draw(dirtImage, new Rectangle(250, 250, dirtImageSize, dirtImageSize), Color.White);
 
+            menuManager.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

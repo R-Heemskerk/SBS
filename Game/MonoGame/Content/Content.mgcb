@@ -109,18 +109,6 @@
 /processorParam:TextureFormat=Color
 /build:Images/avocado.png
 
-#begin Images/dragon-fruit.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Images/dragon-fruit.jpg
-
 #begin Images/mango.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -156,4 +144,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/plantzaadjes.jpg
+
+#begin Images/dragonfruit.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/dragonfruit.jpg
 
