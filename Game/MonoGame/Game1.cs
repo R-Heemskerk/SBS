@@ -12,7 +12,19 @@ namespace MonoGame
         public SpriteBatch SpriteBatch;
 
         private GraphicsDeviceManager graphics;
-        private Texture2D ananasImage, plantzaadjesImage, avocadoImage, dragonfruitImage, granaatappelImage, guaveImage, lycheesImage, mangoImage, markoesaImage, papayaImage, passievruchtImage;
+
+        private Texture2D ananasImage,
+            plantzaadjesImage,
+            avocadoImage,
+            dragonfruitImage,
+            granaatappelImage,
+            guaveImage,
+            lycheesImage,
+            mangoImage,
+            markoesaImage,
+            papayaImage,
+            passievruchtImage;
+
         private MenuManager menuManager = new MenuManager();
         private Dirt[] dirtFields = new Dirt[4];
         private MouseState prevState, newState;
@@ -35,7 +47,7 @@ namespace MonoGame
 
             this.IsMouseVisible = true;
 
-            graphics.PreferredBackBufferWidth = 200*4 + 100; 
+            graphics.PreferredBackBufferWidth = 200 * 4 + 100;
             graphics.PreferredBackBufferHeight = 400;
             graphics.ApplyChanges();
         }
@@ -85,7 +97,8 @@ namespace MonoGame
         protected override void Update(GameTime gameTime)
         {
             newState = Mouse.GetState();
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             prevState = newState;
@@ -105,7 +118,7 @@ namespace MonoGame
             //Land renderen
             foreach (var field in dirtFields)
             {
-                if(!(newState.LeftButton == ButtonState.Pressed && field.CollidesWith(newState)))
+                if (!(newState.LeftButton == ButtonState.Pressed && field.CollidesWith(newState)))
                     field.Draw(SpriteBatch);
             }
 
