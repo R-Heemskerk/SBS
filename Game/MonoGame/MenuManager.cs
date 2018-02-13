@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MonoGame
 {
-    class MenuManager : DrawableObject
+    class MenuManager
     {
         private bool active = false;
 
@@ -16,7 +16,7 @@ namespace MonoGame
             //check voor collisie / klikken van opties(=zaadjes planten, water geven en grond bemesten) 
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             if (active)
             {
