@@ -13,6 +13,8 @@ namespace MonoGame
         SpriteBatch spriteBatch;
         Texture2D dirtImage, ananasImage, plantzaadjesImage, avocadoImage, dragonfruitImage, granaatappelImage, guaveImage, lycheesImage, mangoImage, MarkoesaImage, papayaImage, passievruchtImage;
         MenuManager menuManager = new MenuManager();
+        Dirt[] fields = new Dirt[4];
+        MouseState prevState, newState;
 
         public Game1()
         {
@@ -33,6 +35,7 @@ namespace MonoGame
             base.Initialize();
 
             this.IsMouseVisible = true;
+            
         }
 
         /// <summary>
@@ -43,8 +46,11 @@ namespace MonoGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            dirtImage = Content.Load<Texture2D>("Images/dirt");
+            for (int i = 0; i < fields.Length; i++)
+            {
+                fields[i] = new Dirt(new Vector2(50 + i * 200, 50), 180, 180);
+                fields[i].LoadContent(Content);
+            }
             ananasImage = Content.Load<Texture2D>("Images/ananas");
             plantzaadjesImage = Content.Load<Texture2D>("Images/plantzaadjes");
             avocadoImage = Content.Load<Texture2D>("Images/avocado");
@@ -77,9 +83,14 @@ namespace MonoGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            newState = Mouse.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
+            
+
+            prevState = newState;
             base.Update(gameTime);
         }
 
@@ -93,13 +104,11 @@ namespace MonoGame
 
             spriteBatch.Begin();
 
-            int dirtImageSize = 180;
-
-            spriteBatch.Draw(dirtImage, new Rectangle(50, 50, dirtImageSize, dirtImageSize), Color.White);
-            spriteBatch.Draw(dirtImage, new Rectangle(50, 250, dirtImageSize, dirtImageSize), Color.White);
-            spriteBatch.Draw(dirtImage, new Rectangle(250, 50, dirtImageSize, dirtImageSize), Color.White);
-            spriteBatch.Draw(dirtImage, new Rectangle(250, 250, dirtImageSize, dirtImageSize), Color.White);
-
+            for (int i = 0; i < fields.Length; i++)
+            {
+                if(!(newState.LeftButton == ButtonState.Pressed && fields[i].CollidesWith(newState)))
+                    fields[i].Draw(spriteBatch);
+            }
             menuManager.Draw(spriteBatch);
             spriteBatch.End();
 
