@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MonoGame
 {
-    class Dirt : DrawableObject, ClickableObject
+    class Dirt : DrawableObject, IClickableObject
     {
         public Dirt(Vector2 pos, int width, int height)
         {
@@ -18,9 +18,9 @@ namespace MonoGame
             this.width = width;
         }
 
-        public override void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager content)
         {
-            texture = Content.Load<Texture2D>("Images/dirt");
+            texture = content.Load<Texture2D>("Images/dirt");
         }
 
         public string[] MenuOptions()

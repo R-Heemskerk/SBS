@@ -9,7 +9,7 @@ namespace MonoGame
 {
     class MenuManager
     {
-        bool Active = false; 
+        private bool active = false; 
         //clickable object
 
             //if (mouseState.LeftButton == ButtonState.Pressed)
@@ -21,9 +21,12 @@ namespace MonoGame
             //check voor collisie / klikken van opties(=zaadjes planten, water geven en grond bemesten) 
         }
 
-        public void Draw(SpriteBatch spritBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            //teken menu
+            if (active)
+            {
+
+            }
         }
     }
 }

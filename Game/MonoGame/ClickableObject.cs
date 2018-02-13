@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonoGame
 {
-    interface ClickableObject
+    interface IClickableObject
     {
         string[] MenuOptions();
     }

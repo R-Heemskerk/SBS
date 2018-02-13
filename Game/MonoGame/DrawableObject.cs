@@ -16,15 +16,13 @@ namespace MonoGame
         protected int width, height;
         protected Texture2D texture;
 
-        public virtual void LoadContent(ContentManager Content) {}
+        public virtual void LoadContent(ContentManager content) {}
 
         public bool CollidesWith(MouseState mouse)
         {
             return (mouse.X > pos.X && mouse.X < pos.X + width
                 && mouse.Y > pos.Y && mouse.Y < pos.Y + height);
         }
-
-        public virtual void Update() { }
 
         public void Draw(SpriteBatch spriteBatch) {
             spriteBatch.Draw(texture: texture, color: Color.White, destinationRectangle: new Rectangle((int)pos.X, (int)pos.Y, width, height));
