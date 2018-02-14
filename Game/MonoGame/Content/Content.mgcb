@@ -157,8 +157,15 @@
 /processorParam:TextureFormat=Color
 /build:Images/dragonfruit.jpg
 
-#begin Images/ic_shopping_basket_black_24px.svg
-/importer:
-/processor:
-/build:Images/ic_shopping_basket_black_24px.svg
+#begin Images/ic_shopping_basket_black_24dp_2x.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/ic_shopping_basket_black_24dp_2x.png
 
