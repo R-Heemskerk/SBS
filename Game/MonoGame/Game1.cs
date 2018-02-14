@@ -9,8 +9,7 @@ namespace MonoGame
     /// </summary>
     public class Game1 : Game
     {
-        public SpriteBatch SpriteBatch;
-
+        private SpriteBatch spriteBatch;
         private GraphicsDeviceManager graphics;
 
         private Texture2D ananasImage,
@@ -26,14 +25,16 @@ namespace MonoGame
             passievruchtImage,
             storeButtonImage;
 
-        private MenuManager menuManager = new MenuManager();
+        private MenuManager menuManager;
         private Dirt[] dirtFields = new Dirt[4];
-        private MouseState prevState, newState;
+        private MouseState prevMouseState, mouseState;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            menuManager = new MenuManager();
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace MonoGame
             this.IsMouseVisible = true;
 
             graphics.PreferredBackBufferWidth = 200 * 4 + 100;
-            graphics.PreferredBackBufferHeight = 400;
+            graphics.PreferredBackBufferHeight = 600;
             graphics.ApplyChanges();
         }
 
@@ -59,13 +60,15 @@ namespace MonoGame
         /// </summary>
         protected override void LoadContent()
         {
-            SpriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             for (int i = 0; i < dirtFields.Length; i++)
             {
                 dirtFields[i] = new Dirt(new Vector2(50 + i * 200, 50), 180, 180);
                 dirtFields[i].LoadContent(Content);
             }
+
+            menuManager.LoadContent(graphics, Content);
 
             //Alle plaatjes van de vruchten
             ananasImage = Content.Load<Texture2D>("Images/ananas");
@@ -98,12 +101,36 @@ namespace MonoGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            newState = Mouse.GetState();
+            prevMouseState = mouseState;
+            mouseState = Mouse.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            prevState = newState;
+            menuManager.Update(gameTime, mouseState, prevMouseState);
+
+            if (!menuManager.Collide(mouseState))
+            {
+                bool collidedWithDirt = false;
+                foreach (var dirtField in dirtFields)
+                {
+                    if (mouseState.LeftButton == ButtonState.Pressed &&
+                        prevMouseState.LeftButton == ButtonState.Released &&
+                        dirtField.CollidesWith(mouseState))
+                    {
+                        menuManager.StartMenu(dirtField, mouseState.X, mouseState.Y);
+                    }
+
+                    if (dirtField.CollidesWith(mouseState))
+                        collidedWithDirt = true;
+                }
+
+                if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released &&
+                    !collidedWithDirt)
+                    menuManager.HideMenu();
+            }
+            
+
             base.Update(gameTime);
         }
 
@@ -115,19 +142,21 @@ namespace MonoGame
         {
             GraphicsDevice.Clear(Color.ForestGreen);
 
-            SpriteBatch.Begin();
+            spriteBatch.Begin();
 
             //Land renderen
             foreach (var field in dirtFields)
             {
-                if (!(newState.LeftButton == ButtonState.Pressed && field.CollidesWith(newState)))
-                    field.Draw(SpriteBatch);
+//                if (!(mouseState.LeftButton == ButtonState.Pressed && field.CollidesWith(mouseState)))
+                field.Draw(spriteBatch);
             }
 
-            SpriteBatch.Draw(storeButtonImage, new Rectangle(50 + 3 * 200 + (180 - 80), 100 + 180, 80, 80), Color.White);
+            spriteBatch.Draw(storeButtonImage, new Rectangle(50 + 3 * 200 + (180 - 80), 100 + 180, 80, 80),
+                Color.White);
 
-            menuManager.Draw(SpriteBatch);
-            SpriteBatch.End();
+            menuManager.Draw(spriteBatch);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -169,3 +169,10 @@
 /processorParam:TextureFormat=Color
 /build:Images/ic_shopping_basket_black_24dp_2x.png
 
+#begin Arial.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Arial.spritefont
+

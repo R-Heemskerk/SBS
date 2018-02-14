@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonoGame.MenuOptions;
 
 namespace MonoGame
 {
@@ -23,9 +24,9 @@ namespace MonoGame
             texture = content.Load<Texture2D>("Images/dirt");
         }
 
-        public string[] MenuOptions()
+        public IMenuOption[] MenuOptions()
         {
-            return new string[] { "Hallo", "Hello" };
+            return new IMenuOption[] { new MenuItemPineapple(), new MenuItemMango() };
         }
     }
 }

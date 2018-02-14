@@ -4,24 +4,87 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 
 namespace MonoGame
 {
     class MenuManager
     {
-        private bool active = false;
+        public bool IsActive { get; private set; } = false;
 
-        public void Update()
+        private int textSpace = 10, margin = 40;
+
+        private int x, y, width, height, textHeight;
+        private GraphicsDevice graphicsDevice;
+        private Texture2D dummyTexture;
+        private SpriteFont spriteFont;
+        private IClickableObject clickableObject;
+
+        public void LoadContent(GraphicsDeviceManager graphicsDevice, ContentManager content)
+        {
+            this.graphicsDevice = graphicsDevice.GraphicsDevice;
+            dummyTexture = new Texture2D(graphicsDevice.GraphicsDevice, 1, 1);
+            dummyTexture.SetData(new Color[] {Color.White});
+
+            spriteFont = content.Load<SpriteFont>("Arial");
+        }
+
+        public void Update(GameTime gameTime, MouseState mouseState, MouseState prevMouseState)
         {
             //check voor collisie / klikken van opties(=zaadjes planten, water geven en grond bemesten) 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (active)
+            if (IsActive)
             {
+                if (x + width + 5 > graphicsDevice.Viewport.Bounds.Width)
+                {
+                    x = x - (graphicsDevice.Viewport.Bounds.Width - 5 - x);
+                }
 
+                spriteBatch.Draw(dummyTexture, new Rectangle(x, y, width, height), Color.White);
+
+                for (var i = 0; i < clickableObject.MenuOptions().Length; i++)
+                {
+                    IMenuOption menuOption = clickableObject.MenuOptions()[i];
+                    spriteBatch.DrawString(spriteFont, menuOption.GetName(),
+                        new Vector2(x + margin / 2, y + (margin / 2) + (textHeight + (textSpace / 2)) * i),
+                        Color.Black);
+                }
             }
+        }
+
+        public void StartMenu(IClickableObject clickableObject, int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+            this.clickableObject = clickableObject;
+            IsActive = true;
+
+            int maxWidth = 0;
+            int maxHeight = 0;
+            foreach (var menuOption in clickableObject.MenuOptions())
+            {
+                maxWidth = Math.Max(maxWidth, (int) spriteFont.MeasureString(menuOption.GetName()).X);
+                maxHeight = Math.Max(maxHeight, (int) spriteFont.MeasureString(menuOption.GetName()).Y);
+            }
+
+            textHeight = textSpace + maxHeight;
+            width = margin + maxWidth;
+            height = margin + textHeight * clickableObject.MenuOptions().Length;
+        }
+
+        public void HideMenu()
+        {
+            IsActive = false;
+        }
+
+        public bool Collide(MouseState mouseState)
+        {
+            return (mouseState.X >= x && mouseState.X <= x + height) && (mouseState.Y >= y && mouseState.Y <= y + height) && IsActive;
         }
     }
 }
