@@ -157,3 +157,8 @@
 /processorParam:TextureFormat=Color
 /build:Images/dragonfruit.jpg
 
+#begin Images/ic_shopping_basket_black_24px.svg
+/importer:
+/processor:
+/build:Images/ic_shopping_basket_black_24px.svg
+
