@@ -41,7 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ClickableObject.cs" />
+    <Compile Include="IClickableObject.cs" />
     <Compile Include="Dirt.cs" />
     <Compile Include="DrawableObject.cs" />
     <Compile Include="Game1.cs" />
