@@ -23,7 +23,8 @@ namespace MonoGame
             mangoImage,
             markoesaImage,
             papayaImage,
-            passievruchtImage;
+            passievruchtImage,
+            storeButtonImage;
 
         private MenuManager menuManager = new MenuManager();
         private Dirt[] dirtFields = new Dirt[4];
@@ -78,6 +79,7 @@ namespace MonoGame
             markoesaImage = Content.Load<Texture2D>("Images/Markoesa");
             papayaImage = Content.Load<Texture2D>("Images/papaya");
             passievruchtImage = Content.Load<Texture2D>("Images/passievrucht");
+            storeButtonImage = Content.Load<Texture2D>("Images/ic_shopping_basket_black_24dp_2x");
         }
 
         /// <summary>
@@ -121,6 +123,8 @@ namespace MonoGame
                 if (!(newState.LeftButton == ButtonState.Pressed && field.CollidesWith(newState)))
                     field.Draw(SpriteBatch);
             }
+
+            SpriteBatch.Draw(storeButtonImage, new Rectangle(50 + 3 * 200 + (180 - 80), 100 + 180, 80, 80), Color.White);
 
             menuManager.Draw(SpriteBatch);
             SpriteBatch.End();
