@@ -41,6 +41,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ClickableObject.cs" />
+    <Compile Include="Dirt.cs" />
+    <Compile Include="DrawableObject.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="Program.cs" />

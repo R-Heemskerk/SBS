@@ -9,10 +9,25 @@ namespace MonoGame
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        Texture2D dirtImage, ananasImage, plantzaadjesImage, avocadoImage, dragonfruitImage, granaatappelImage, guaveImage, lycheesImage, mangoImage, MarkoesaImage, papayaImage, passievruchtImage;
-        MenuManager menuManager = new MenuManager();
+        public SpriteBatch SpriteBatch;
+
+        private GraphicsDeviceManager graphics;
+
+        private Texture2D ananasImage,
+            plantzaadjesImage,
+            avocadoImage,
+            dragonfruitImage,
+            granaatappelImage,
+            guaveImage,
+            lycheesImage,
+            mangoImage,
+            markoesaImage,
+            papayaImage,
+            passievruchtImage;
+
+        private MenuManager menuManager = new MenuManager();
+        private Dirt[] dirtFields = new Dirt[4];
+        private MouseState prevState, newState;
 
         public Game1()
         {
@@ -28,11 +43,13 @@ namespace MonoGame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
 
             this.IsMouseVisible = true;
+
+            graphics.PreferredBackBufferWidth = 200 * 4 + 100;
+            graphics.PreferredBackBufferHeight = 400;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -41,10 +58,15 @@ namespace MonoGame
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            dirtImage = Content.Load<Texture2D>("Images/dirt");
+            for (int i = 0; i < dirtFields.Length; i++)
+            {
+                dirtFields[i] = new Dirt(new Vector2(50 + i * 200, 50), 180, 180);
+                dirtFields[i].LoadContent(Content);
+            }
+
+            //Alle plaatjes van de vruchten
             ananasImage = Content.Load<Texture2D>("Images/ananas");
             plantzaadjesImage = Content.Load<Texture2D>("Images/plantzaadjes");
             avocadoImage = Content.Load<Texture2D>("Images/avocado");
@@ -53,12 +75,9 @@ namespace MonoGame
             guaveImage = Content.Load<Texture2D>("Images/guave");
             lycheesImage = Content.Load<Texture2D>("Images/lychees");
             mangoImage = Content.Load<Texture2D>("Images/mango");
-            MarkoesaImage = Content.Load<Texture2D>("Images/Markoesa");
+            markoesaImage = Content.Load<Texture2D>("Images/Markoesa");
             papayaImage = Content.Load<Texture2D>("Images/papaya");
             passievruchtImage = Content.Load<Texture2D>("Images/passievrucht");
-            //Alle plaatjes van de vruchten. 
-
-
         }
 
         /// <summary>
@@ -67,7 +86,7 @@ namespace MonoGame
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            menuManager = null;
         }
 
         /// <summary>
@@ -77,9 +96,12 @@ namespace MonoGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            newState = Mouse.GetState();
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            prevState = newState;
             base.Update(gameTime);
         }
 
@@ -91,17 +113,17 @@ namespace MonoGame
         {
             GraphicsDevice.Clear(Color.ForestGreen);
 
-            spriteBatch.Begin();
+            SpriteBatch.Begin();
 
-            int dirtImageSize = 180;
+            //Land renderen
+            foreach (var field in dirtFields)
+            {
+                if (!(newState.LeftButton == ButtonState.Pressed && field.CollidesWith(newState)))
+                    field.Draw(SpriteBatch);
+            }
 
-            spriteBatch.Draw(dirtImage, new Rectangle(50, 50, dirtImageSize, dirtImageSize), Color.White);
-            spriteBatch.Draw(dirtImage, new Rectangle(50, 250, dirtImageSize, dirtImageSize), Color.White);
-            spriteBatch.Draw(dirtImage, new Rectangle(250, 50, dirtImageSize, dirtImageSize), Color.White);
-            spriteBatch.Draw(dirtImage, new Rectangle(250, 250, dirtImageSize, dirtImageSize), Color.White);
-
-            menuManager.Draw(spriteBatch);
-            spriteBatch.End();
+            menuManager.Draw(SpriteBatch);
+            SpriteBatch.End();
 
             base.Draw(gameTime);
         }

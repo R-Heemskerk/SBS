@@ -9,17 +9,19 @@ namespace MonoGame
 {
     class MenuManager
     {
-        bool Active = false; 
-        //clickable object
+        private bool active = false;
 
         public void Update()
         {
-            //check voor collisie / klikkn van opties(=zaadjes planten, water geven en grond bemesten) 
+            //check voor collisie / klikken van opties(=zaadjes planten, water geven en grond bemesten) 
         }
 
-        public void Draw(SpriteBatch spritBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            //teken menu
+            if (active)
+            {
+
+            }
         }
     }
 }
