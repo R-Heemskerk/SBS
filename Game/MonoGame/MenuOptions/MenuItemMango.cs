@@ -15,7 +15,7 @@ namespace MonoGame.MenuOptions
 
         public void OnClick()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

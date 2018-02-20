@@ -26,7 +26,7 @@ namespace MonoGame
                                     && mouse.Y > pos.Y && mouse.Y < pos.Y + height);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture: texture, color: Color.White,
                 destinationRectangle: new Rectangle((int) pos.X, (int) pos.Y, width, height));

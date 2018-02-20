@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿                                                                                                                                                                                                                                                                                                                          using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,6 +12,7 @@ namespace MonoGame
 {
     class Dirt : DrawableObject, IClickableObject
     {
+        
         public Dirt(Vector2 pos, int width, int height)
         {
             this.pos = pos;
@@ -26,7 +27,15 @@ namespace MonoGame
 
         public IMenuOption[] MenuOptions()
         {
-            return new IMenuOption[] { new MenuItemPineapple(), new MenuItemMango() };
+            //als plant niet aanwezig geef dit
+            return new IMenuOption[] { new MenuItemPineapple(), new MenuItemMango()  };
+            //Ander van plant
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            //Teken plant als hij aanwezig is
         }
     }
 }
