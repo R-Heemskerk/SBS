@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MonoGame.MenuOptions
 {
-    class MenuItemGranaatappel : MenuOption
+    class MenuItemGranaatappel : MenuItem
     {
-        public MenuItemGranaatappel(Dirt dirt) : base(dirt)
+        public MenuItemGranaatappel(Dirt dirt) : base(PlantList.Granaatappel, dirt)
         {
         }
 

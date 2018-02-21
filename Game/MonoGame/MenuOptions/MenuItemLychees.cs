@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MonoGame.MenuOptions
 {
-    class MenuItemLychees : MenuOption
+    class MenuItemLychees : MenuItem
     {
-        public MenuItemLychees(Dirt dirt) : base(dirt)
+        public MenuItemLychees(Dirt dirt) : base(PlantList.Lychees, dirt)
         {
         }
 

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MonoGame.MenuOptions
 {
-    class MenuItemMango : MenuOption
+    class MenuItemMango : MenuItem
     {
-        public MenuItemMango(Dirt dirt) : base(dirt)
+        public MenuItemMango(Dirt dirt) : base(PlantList.Mango, dirt)
         {
         }
 

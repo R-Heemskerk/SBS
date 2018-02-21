@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MonoGame.MenuOptions
 {
-    class MenuItemGuave : MenuOption
+    class MenuItemGuave : MenuItem
     {
-        public MenuItemGuave(Dirt dirt) : base(dirt)
+        public MenuItemGuave(Dirt dirt) : base(PlantList.Guave, dirt)
         {
         }
 

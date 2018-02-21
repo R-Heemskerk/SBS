@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace MonoGame                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+namespace MonoGame
 {
     /// <summary>
     /// This is the main type for your game.
@@ -11,21 +11,12 @@ namespace MonoGame
     public class Game1 : Game
     {
         private SpriteBatch spriteBatch;
-        private GraphicsDeviceManager graphics;
+        private readonly GraphicsDeviceManager graphics;
 
-        private Texture2D ananasImage,
-            plantzaadjesImage,
-            avocadoImage,
-            dragonfruitImage,
-            granaatappelImage,
-            guaveImage,
-            lycheesImage,
-            mangoImage,
-            markoesaImage,
-            papayaImage,
-            passievruchtImage,
+        private Texture2D plantzaadjesImage,
             storeButtonImage,
-            plantjeImage;
+            plantjeImage,
+            grassImage;
 
         private MenuManager menuManager;
         private Dirt[] dirtFields = new Dirt[4];
@@ -70,28 +61,13 @@ namespace MonoGame
                 dirtFields[i].LoadContent(Content);
             }
 
-            foreach (var plant in Plant.Values)
-            {
-                plant.LoadContent(Content);
-                Console.WriteLine("Testing " + plant.Name + (plant.Texture == null ? " texture null" : " texture not null"));
-            }
-
             menuManager.LoadContent(graphics, Content);
 
             //Alle plaatjes van de vruchten
-            ananasImage = Content.Load<Texture2D>("Images/ananas");
             plantzaadjesImage = Content.Load<Texture2D>("Images/plantzaadjes");
-            avocadoImage = Content.Load<Texture2D>("Images/avocado");
-            dragonfruitImage = Content.Load<Texture2D>("Images/dragonfruit");
-            granaatappelImage = Content.Load<Texture2D>("Images/granaatappel");
-            guaveImage = Content.Load<Texture2D>("Images/guave");
-            lycheesImage = Content.Load<Texture2D>("Images/lychees");
-            mangoImage = Content.Load<Texture2D>("Images/mango");
-            markoesaImage = Content.Load<Texture2D>("Images/Markoesa");
-            papayaImage = Content.Load<Texture2D>("Images/papaya");
-            passievruchtImage = Content.Load<Texture2D>("Images/passievrucht");
             storeButtonImage = Content.Load<Texture2D>("Images/ic_shopping_basket_black_24dp_2x");
             plantjeImage = Content.Load<Texture2D>("Images/plantje");
+            grassImage = Content.Load<Texture2D>("Images/grass");
         }
 
         /// <summary>
@@ -138,7 +114,7 @@ namespace MonoGame
                     !collidedWithDirt)
                     menuManager.HideMenu();
             }
-            
+
 
             base.Update(gameTime);
         }
@@ -149,9 +125,11 @@ namespace MonoGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.ForestGreen);
+            GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
+
+            spriteBatch.Draw(grassImage, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
 
             //Land renderen
             foreach (var field in dirtFields)

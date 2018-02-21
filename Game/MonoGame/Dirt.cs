@@ -24,10 +24,10 @@ namespace MonoGame
             texture = content.Load<Texture2D>("Images/dirt");
         }
 
-        public MenuOption[] MenuOptions()
+        public MenuItem[] MenuOptions()
         {
             //als plant niet aanwezig geef dit
-            return new MenuOption[]
+            return new MenuItem[]
             {
                 new MenuItemAnanas(this), new MenuItemMango(this), new MenuItemDragonfruit(this),
                 new MenuItemAvocado(this), new MenuItemGranaatappel(this), new MenuItemGuave(this), new MenuItemLychees(this),

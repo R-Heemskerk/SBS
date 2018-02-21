@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace MonoGame
 {
-    public abstract class MenuOption
+    public abstract class MenuItem
     {
+        protected PlantList plant;
         protected Dirt dirt;
 
-        protected MenuOption(Dirt dirt)
+        protected MenuItem(PlantList plant, Dirt dirt)
         {
+            this.plant = plant;
             this.dirt = dirt;
         }
 
