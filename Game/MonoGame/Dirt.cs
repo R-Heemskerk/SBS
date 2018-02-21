@@ -33,10 +33,8 @@ namespace MonoGame
             //als plant niet aanwezig geef dit
             return new MenuItem[]
             {
-                new MenuItemAnanas(this), new MenuItemMango(this), new MenuItemDragonfruit(this),
-                new MenuItemAvocado(this), new MenuItemGranaatappel(this), new MenuItemGuave(this),
-                new MenuItemLychees(this), new MenuItemMarkoesa(this), new MenuItemPapaya(this),
-                new MenuItemPassievrucht(this)
+                new MenuItemAnanas(this), new MenuItemMango(this), new MenuItemDragonfruit(this), new MenuItemAvocado(this), new MenuItemGranaatappel(this),
+                new MenuItemGuave(this), new MenuItemLychees(this), new MenuItemMarkoesa(this), new MenuItemPapaya(this), new MenuItemPassievrucht(this)
             };
 
             //Ander van plant
@@ -57,10 +55,10 @@ namespace MonoGame
 
             if (Plant != null)
             {
-                spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
-                spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
-                spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X + width / 2, (int)pos.Y, width / 2, height / 2), Color.White);
-                spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X + width / 2, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
+                spriteBatch.Draw(Plant.Texture, new Rectangle((int) pos.X, (int) pos.Y, width / 2, height / 2), Color.White);
+                spriteBatch.Draw(Plant.Texture, new Rectangle((int) pos.X, (int) pos.Y + height / 2, width / 2, height / 2), Color.White);
+                spriteBatch.Draw(Plant.Texture, new Rectangle((int) pos.X + width / 2, (int) pos.Y, width / 2, height / 2), Color.White);
+                spriteBatch.Draw(Plant.Texture, new Rectangle((int) pos.X + width / 2, (int) pos.Y + height / 2, width / 2, height / 2), Color.White);
             }
         }
     }
