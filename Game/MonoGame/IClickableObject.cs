@@ -8,6 +8,6 @@ namespace MonoGame
 {
     interface IClickableObject
     {
-        IMenuOption[] MenuOptions();
+        MenuOption[] MenuOptions();
     }
 }

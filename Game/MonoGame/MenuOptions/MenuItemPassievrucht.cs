@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonoGame.MenuOptions
 {
-    class MenuItemPassievrucht : IMenuOption
+    class MenuItemPassievrucht : MenuOption
     {
         public string GetName()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonoGame.MenuOptions
 {
-    class MenuItemGuave : IMenuOption
+    class MenuItemGuave : MenuOption
     {
         public string GetName()
         {

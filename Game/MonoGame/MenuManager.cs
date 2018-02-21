@@ -36,7 +36,7 @@ namespace MonoGame
             //check voor collisie / klikken van opties(=zaadjes planten, water geven en grond bemesten)
             if (clickableObject != null)
             {
-                IMenuOption[] options = clickableObject.MenuOptions();
+                MenuOption[] options = clickableObject.MenuOptions();
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (mouseState.X >= x 
@@ -63,7 +63,7 @@ namespace MonoGame
                
                 for (var i = 0; i < clickableObject.MenuOptions().Length; i++)
                 {
-                    IMenuOption menuOption = clickableObject.MenuOptions()[i];
+                    MenuOption menuOption = clickableObject.MenuOptions()[i];
                     spriteBatch.DrawString(spriteFont, menuOption.GetName(),
                         new Vector2(x + margin / 2, y + (margin / 2) + (textHeight + (textSpace / 2)) * i),
                         Color.Black);
