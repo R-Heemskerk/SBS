@@ -35,8 +35,8 @@ namespace MonoGame
             {
                 new MenuItemAnanas(this), new MenuItemMango(this), new MenuItemDragonfruit(this),
                 new MenuItemAvocado(this), new MenuItemGranaatappel(this), new MenuItemGuave(this),
-                new MenuItemLychees(this),
-                new MenuItemMarkoesa(this), new MenuItemPapaya(this), new MenuItemPassievrucht(this)
+                new MenuItemLychees(this), new MenuItemMarkoesa(this), new MenuItemPapaya(this),
+                new MenuItemPassievrucht(this)
             };
 
             //Ander van plant
@@ -54,7 +54,9 @@ namespace MonoGame
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            //Teken plant als hij aanwezig is
+
+            if (Plant != null)
+                spriteBatch.Draw(Plant.Texture, new Rectangle((int) pos.X, (int) pos.Y, width, height), Color.White);
         }
     }
 }
