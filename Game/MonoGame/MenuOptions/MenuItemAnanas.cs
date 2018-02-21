@@ -6,24 +6,21 @@ using System.Threading.Tasks;
 
 namespace MonoGame.MenuOptions
 {
-    class MenuItemPineapple : MenuOption
+    class MenuItemAnanas : MenuOption
     {
-        private Dirt dirt;
-
-        public MenuItemPineapple(Dirt dirt) : base(dirt)
+        public MenuItemAnanas(Dirt dirt) : base(dirt)
         {
-            this.dirt = dirt;
         }
 
         public override string GetName()
         {
-            throw new NotImplementedException();
+            return "Ananas";
         }
 
 
         public override void OnClick()
         {
-            //            dirt.SetPlant(this);
+            //dirt.SetPlant(this);
         }
     }
 }

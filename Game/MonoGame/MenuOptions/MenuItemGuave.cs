@@ -8,14 +8,19 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemGuave : MenuOption
     {
-        public string GetName()
+        public MenuItemGuave(Dirt dirt) : base(dirt)
+        {
+        }
+
+        public override string GetName()
         {
             return "Guave";
         }
 
-        public void OnClick()
+
+        public override void OnClick()
         {
-            throw new NotImplementedException();
+            //dirt.SetPlant(this);
         }
     }
 }

@@ -8,14 +8,19 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemLychees : MenuOption
     {
-        public string GetName()
+        public MenuItemLychees(Dirt dirt) : base(dirt)
+        {
+        }
+
+        public override string GetName()
         {
             return "Lychees";
         }
 
-        public void OnClick()
+
+        public override void OnClick()
         {
-            throw new NotImplementedException();
+            //dirt.SetPlant(this);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MonoGame
     {
         public bool IsActive { get; private set; } = false;
 
-        private int textSpace = 10, margin = 40;
+        private int textSpace = 15, margin = 40;
 
         private int x, y, width, height, textHeight;
         private GraphicsDevice graphicsDevice;
@@ -39,13 +39,16 @@ namespace MonoGame
                 MenuOption[] options = clickableObject.MenuOptions();
                 for (int i = 0; i < options.Length; i++)
                 {
-                    if (mouseState.X >= x 
-                        && mouseState.X <= x + width 
-                        && mouseState.Y >= y + (i * (textHeight + margin / 2))
-                        && mouseState.Y <= y + (i + 1) * (textHeight + margin / 2)
+                    if (mouseState.X >= x
+                        && mouseState.X <= x + width
+                        && mouseState.Y >= y + textHeight / 2 + textHeight * i
+                        && mouseState.Y <= y + textHeight / 2 + textHeight * (i + 1)
                         && mouseState.LeftButton == ButtonState.Pressed
                         && prevMouseState.LeftButton == ButtonState.Released)
+                    {
                         options[i].OnClick();
+                        Console.WriteLine("Menu clicked " + options[i].GetName());
+                    }
                 }
             }
         }
@@ -60,12 +63,18 @@ namespace MonoGame
                 }
 
                 spriteBatch.Draw(dummyTexture, new Rectangle(x, y, width, height), Color.White);
-               
+
                 for (var i = 0; i < clickableObject.MenuOptions().Length; i++)
                 {
                     MenuOption menuOption = clickableObject.MenuOptions()[i];
+
+                    if (i != 0)
+                        spriteBatch.Draw(dummyTexture,
+                            new Rectangle(x + margin / 3, y + textHeight / 2 + textHeight * i,
+                                (int) (width - margin / 1.5), 1), Color.LightGray);
+
                     spriteBatch.DrawString(spriteFont, menuOption.GetName(),
-                        new Vector2(x + margin / 2, y + (margin / 2) + (textHeight + (textSpace / 2)) * i),
+                        new Vector2(x + margin / 2, y + margin / 2 + textSpace / 2 + textHeight * i),
                         Color.Black);
                 }
             }
@@ -98,7 +107,8 @@ namespace MonoGame
 
         public bool Collide(MouseState mouseState)
         {
-            return (mouseState.X >= x && mouseState.X <= x + height) && (mouseState.Y >= y && mouseState.Y <= y + height) && IsActive;
+            return (mouseState.X >= x && mouseState.X <= x + height) &&
+                   (mouseState.Y >= y && mouseState.Y <= y + height) && IsActive;
         }
     }
 }

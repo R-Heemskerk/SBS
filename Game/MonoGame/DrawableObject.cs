@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoGame
 {
-    class DrawableObject
+    public class DrawableObject
     {
         protected Vector2 pos;
         protected int width, height;

@@ -8,22 +8,19 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemMango : MenuOption
     {
-        private Dirt dirt;
-
         public MenuItemMango(Dirt dirt) : base(dirt)
         {
-            this.dirt = dirt;
         }
 
         public override string GetName()
         {
-            throw new NotImplementedException();
+            return "Mango";
         }
 
 
         public override void OnClick()
         {
-//            dirt.SetPlant(this);
+            //dirt.SetPlant(this);
         }
     }
 }

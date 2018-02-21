@@ -8,14 +8,19 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemGranaatappel : MenuOption
     {
-        public string GetName()
+        public MenuItemGranaatappel(Dirt dirt) : base(dirt)
+        {
+        }
+
+        public override string GetName()
         {
             return "Granaatappel";
         }
 
-        public void OnClick()
+
+        public override void OnClick()
         {
-            
+            //dirt.SetPlant(this);
         }
     }
 }

@@ -8,14 +8,19 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemMarkoesa : MenuOption
     {
-        public string GetName()
+        public MenuItemMarkoesa(Dirt dirt) : base(dirt)
+        {
+        }
+
+        public override string GetName()
         {
             return "Markoesa";
         }
 
-        public void OnClick()
+
+        public override void OnClick()
         {
-            throw new NotImplementedException();
+            //dirt.SetPlant(this);
         }
     }
 }

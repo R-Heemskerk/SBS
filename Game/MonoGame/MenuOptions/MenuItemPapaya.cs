@@ -8,14 +8,19 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemPapaya : MenuOption
     {
-        public string GetName()
+        public MenuItemPapaya(Dirt dirt) : base(dirt)
+        {
+        }
+
+        public override string GetName()
         {
             return "Papaya";
         }
 
-        public void OnClick()
+
+        public override void OnClick()
         {
-            throw new NotImplementedException();
+            //dirt.SetPlant(this);
         }
     }
 }

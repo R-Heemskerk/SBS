@@ -8,14 +8,19 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemAvocado : MenuOption
     {
-        public string GetName()
+        public MenuItemAvocado(Dirt dirt) : base(dirt)
+        {
+        }
+
+        public override string GetName()
         {
             return "Avocado";
         }
 
-        public void OnClick()
+
+        public override void OnClick()
         {
-            throw new NotImplementedException();
+            //dirt.SetPlant(this);
         }
     }
 }

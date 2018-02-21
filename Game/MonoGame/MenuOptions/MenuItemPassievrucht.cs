@@ -8,14 +8,19 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemPassievrucht : MenuOption
     {
-        public string GetName()
+        public MenuItemPassievrucht(Dirt dirt) : base(dirt)
+        {
+        }
+
+        public override string GetName()
         {
             return "Passievrucht";
         }
 
-        public void OnClick()
+
+        public override void OnClick()
         {
-            throw new NotImplementedException();
+            //dirt.SetPlant(this);
         }
     }
 }
