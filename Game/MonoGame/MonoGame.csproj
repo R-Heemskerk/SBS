@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="PlantFactory.cs" />
     <Compile Include="IClickableObject.cs" />
     <Compile Include="Dirt.cs" />
     <Compile Include="DrawableObject.cs" />

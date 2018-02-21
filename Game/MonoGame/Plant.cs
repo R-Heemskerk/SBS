@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonoGame
 {
-    abstract class Plant
+    public abstract class Plant
     {
 
     }

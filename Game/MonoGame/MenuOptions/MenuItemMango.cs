@@ -22,7 +22,6 @@ namespace MonoGame.MenuOptions
 
         public void OnClick()
         {
-            Console.WriteLine("MenuItemMango OnClick");
             dirt.SetPlant(this);
         }
     }
