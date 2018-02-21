@@ -12,8 +12,8 @@ namespace MonoGame
 {
     public class Dirt : DrawableObject, IClickableObject
     {
-        public Main Main { get; } = null;
-        public Plant Plant { get; set; } = null;
+        public Main Main { get; }
+        public Plant Plant { get; set; }
 
         public Dirt(Main main, Vector2 pos, int width, int height)
         {
@@ -56,7 +56,12 @@ namespace MonoGame
             base.Draw(spriteBatch);
 
             if (Plant != null)
-                spriteBatch.Draw(Plant.Texture, new Rectangle((int) pos.X, (int) pos.Y, width, height), Color.White);
+            {
+                spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
+                spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
+                spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X + width / 2, (int)pos.Y, width / 2, height / 2), Color.White);
+                spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X + width / 2, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
+            }
         }
     }
 }
