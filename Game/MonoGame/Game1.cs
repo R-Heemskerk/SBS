@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -67,6 +68,12 @@ namespace MonoGame
             {
                 dirtFields[i] = new Dirt(new Vector2(50 + i * 200, 50), 180, 180);
                 dirtFields[i].LoadContent(Content);
+            }
+
+            foreach (var plant in Plant.Values)
+            {
+                plant.LoadContent(Content);
+                Console.WriteLine("Testing " + plant.Name + (plant.Texture == null ? " texture null" : " texture not null"));
             }
 
             menuManager.LoadContent(graphics, Content);
