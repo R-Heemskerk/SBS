@@ -41,11 +41,14 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ClickableObject.cs" />
+    <Compile Include="IClickableObject.cs" />
     <Compile Include="Dirt.cs" />
     <Compile Include="DrawableObject.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="IMenuOption.cs" />
     <Compile Include="MenuManager.cs" />
+    <Compile Include="MenuOptions\MenuItemMango.cs" />
+    <Compile Include="MenuOptions\MenuItemPineapple.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
