@@ -47,7 +47,15 @@
     <Compile Include="Game1.cs" />
     <Compile Include="IMenuOption.cs" />
     <Compile Include="MenuManager.cs" />
+    <Compile Include="MenuOptions\MenuItemAvocado.cs" />
+    <Compile Include="MenuOptions\MenuItemDragonfruit.cs" />
+    <Compile Include="MenuOptions\MenuItemGranaatappel.cs" />
+    <Compile Include="MenuOptions\MenuItemGuave.cs" />
+    <Compile Include="MenuOptions\MenuItemLychees.cs" />
     <Compile Include="MenuOptions\MenuItemMango.cs" />
+    <Compile Include="MenuOptions\MenuItemMarkoesa.cs" />
+    <Compile Include="MenuOptions\MenuItemPapaya.cs" />
+    <Compile Include="MenuOptions\MenuItemPassievrucht.cs" />
     <Compile Include="MenuOptions\MenuItemPineapple.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -28,7 +28,8 @@ namespace MonoGame
         public IMenuOption[] MenuOptions()
         {
             //als plant niet aanwezig geef dit
-            return new IMenuOption[] { new MenuItemPineapple(), new MenuItemMango()  };
+            return new IMenuOption[] { new MenuItemPineapple(), new MenuItemMango(), new MenuItemDragonfruit(), new MenuItemAvocado(), new MenuItemGranaatappel(), new MenuItemGuave(), new MenuItemLychees(), new MenuItemMarkoesa(), new MenuItemPapaya(), new MenuItemPassievrucht() };
+
             //Ander van plant
         }
 
