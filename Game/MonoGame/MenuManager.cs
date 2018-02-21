@@ -39,10 +39,10 @@ namespace MonoGame
                 IMenuOption[] options = clickableObject.MenuOptions();
                 for (int i = 0; i < options.Length; i++)
                 {
-                    if (y + textHeight * i < mouseState.Y
-                        && y + textHeight * (i + 1) > mouseState.Y
-                        && x < mouseState.X
-                        && x + width > mouseState.X
+                    if (mouseState.X >= x 
+                        && mouseState.X <= x + width 
+                        && mouseState.Y >= y + (i * (textHeight + margin / 2))
+                        && mouseState.Y <= y + (i + 1) * (textHeight + margin / 2)
                         && mouseState.LeftButton == ButtonState.Pressed
                         && prevMouseState.LeftButton == ButtonState.Released)
                         options[i].OnClick();

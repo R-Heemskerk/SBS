@@ -8,6 +8,13 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemMango : IMenuOption
     {
+        private Dirt dirt;
+
+        public MenuItemMango(Dirt dirt)
+        {
+            this.dirt = dirt;
+        }
+
         public string GetName()
         {
             return "Mango";
@@ -15,7 +22,8 @@ namespace MonoGame.MenuOptions
 
         public void OnClick()
         {
-            
+            Console.WriteLine("MenuItemMango OnClick");
+            dirt.SetPlant(this);
         }
     }
 }

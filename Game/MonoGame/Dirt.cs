@@ -12,6 +12,7 @@ namespace MonoGame
 {
     class Dirt : DrawableObject, IClickableObject
     {
+        private IMenuOption activePlant;
         
         public Dirt(Vector2 pos, int width, int height)
         {
@@ -28,8 +29,15 @@ namespace MonoGame
         public IMenuOption[] MenuOptions()
         {
             //als plant niet aanwezig geef dit
-            return new IMenuOption[] { new MenuItemPineapple(), new MenuItemMango()  };
+            return new IMenuOption[] { new MenuItemPineapple(this), new MenuItemMango(this)  };
             //Ander van plant
+        }
+
+        public void SetPlant(IMenuOption menuOption)
+        {
+            this.activePlant = menuOption;
+
+            Console.WriteLine("Active plant " + activePlant.GetName());
         }
 
         public override void Draw(SpriteBatch spriteBatch)
