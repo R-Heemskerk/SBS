@@ -20,7 +20,7 @@ namespace MonoGame
 
         public MenuManager MenuManager { get; private set; } = null;
 
-        private Dirt[] dirtFields = new Dirt[4];
+        private readonly Dirt[] dirtFields = new Dirt[4];
         private MouseState prevMouseState, mouseState;
 
         public Main()
