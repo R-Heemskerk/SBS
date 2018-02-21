@@ -8,6 +8,13 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemPineapple : IMenuOption
     {
+        private Dirt dirt;
+
+        public MenuItemPineapple(Dirt dirt)
+        {
+            this.dirt = dirt;
+        }
+
         public string GetName()
         {
             return "Ananas";
@@ -15,7 +22,8 @@ namespace MonoGame.MenuOptions
 
         public void OnClick()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("MenuItemPineapple OnClick");
+            dirt.SetPlant(this);
         }
     }
 }

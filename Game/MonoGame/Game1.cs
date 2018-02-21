@@ -23,7 +23,8 @@ namespace MonoGame
             markoesaImage,
             papayaImage,
             passievruchtImage,
-            storeButtonImage;
+            storeButtonImage,
+            plantjeImage;
 
         private MenuManager menuManager;
         private Dirt[] dirtFields = new Dirt[4];
@@ -83,6 +84,7 @@ namespace MonoGame
             papayaImage = Content.Load<Texture2D>("Images/papaya");
             passievruchtImage = Content.Load<Texture2D>("Images/passievrucht");
             storeButtonImage = Content.Load<Texture2D>("Images/ic_shopping_basket_black_24dp_2x");
+            plantjeImage = Content.Load<Texture2D>("Images/plantje");
         }
 
         /// <summary>
