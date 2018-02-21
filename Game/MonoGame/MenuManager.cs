@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoGame
 {
-    class MenuManager
+    public class MenuManager
     {
         public bool IsActive { get; private set; } = false;
 
@@ -47,6 +47,7 @@ namespace MonoGame
                         && prevMouseState.LeftButton == ButtonState.Released)
                     {
                         options[i].OnClick();
+                        HideMenu();
                         Console.WriteLine("Menu clicked " + options[i].GetName());
                     }
                 }

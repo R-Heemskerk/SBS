@@ -16,11 +16,5 @@ namespace MonoGame.MenuOptions
         {
             return "Markoesa";
         }
-
-
-        public override void OnClick()
-        {
-            //dirt.SetPlant(this);
-        }
     }
 }

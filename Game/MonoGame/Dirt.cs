@@ -12,8 +12,12 @@ namespace MonoGame
 {
     public class Dirt : DrawableObject, IClickableObject
     {
-        public Dirt(Vector2 pos, int width, int height)
+        public Main Main { get; } = null;
+        public Plant Plant { get; set; } = null;
+
+        public Dirt(Main main, Vector2 pos, int width, int height)
         {
+            this.Main = main;
             this.pos = pos;
             this.height = height;
             this.width = width;
@@ -30,12 +34,22 @@ namespace MonoGame
             return new MenuItem[]
             {
                 new MenuItemAnanas(this), new MenuItemMango(this), new MenuItemDragonfruit(this),
-                new MenuItemAvocado(this), new MenuItemGranaatappel(this), new MenuItemGuave(this), new MenuItemLychees(this),
+                new MenuItemAvocado(this), new MenuItemGranaatappel(this), new MenuItemGuave(this),
+                new MenuItemLychees(this),
                 new MenuItemMarkoesa(this), new MenuItemPapaya(this), new MenuItemPassievrucht(this)
             };
 
             //Ander van plant
         }
+
+        /**
+         * Misschien niet meer nodig omdat het sluiten van het menu al gebeurd door de MenuManager
+         *
+        public void CloseMenu()
+        {
+            Main.MenuManager.HideMenu();
+        }
+        */
 
         public override void Draw(SpriteBatch spriteBatch)
         {

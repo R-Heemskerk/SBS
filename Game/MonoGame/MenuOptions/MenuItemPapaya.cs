@@ -16,12 +16,6 @@ namespace MonoGame.MenuOptions
         {
             return "Papaya";
         }
-
-
-        public override void OnClick()
-        {
-            //dirt.SetPlant(this);
-        }
     }
 }
 

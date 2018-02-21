@@ -18,6 +18,10 @@ namespace MonoGame
         }
 
         public abstract string GetName();
-        public abstract void OnClick();
+
+        public void OnClick()
+        {
+            dirt.Plant = PlantFactory.GetPlant(plant);
+        }
     }
 }

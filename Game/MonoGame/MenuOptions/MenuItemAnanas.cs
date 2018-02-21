@@ -16,11 +16,5 @@ namespace MonoGame.MenuOptions
         {
             return "Ananas";
         }
-
-
-        public override void OnClick()
-        {
-            //dirt.SetPlant(this);
-        }
     }
 }

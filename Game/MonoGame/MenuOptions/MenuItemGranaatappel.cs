@@ -16,12 +16,6 @@ namespace MonoGame.MenuOptions
         {
             return "Granaatappel";
         }
-
-
-        public override void OnClick()
-        {
-            //dirt.SetPlant(this);
-        }
     }
 }
 

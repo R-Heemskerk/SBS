@@ -16,12 +16,6 @@ namespace MonoGame.MenuOptions
         {
             return "Lychees";
         }
-
-
-        public override void OnClick()
-        {
-            //dirt.SetPlant(this);
-        }
     }
 }
 

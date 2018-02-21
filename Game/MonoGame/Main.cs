@@ -8,7 +8,7 @@ namespace MonoGame
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class Main : Game
     {
         private SpriteBatch spriteBatch;
         private readonly GraphicsDeviceManager graphics;
@@ -18,16 +18,17 @@ namespace MonoGame
             plantjeImage,
             grassImage;
 
-        private MenuManager menuManager;
+        public MenuManager MenuManager { get; private set; } = null;
+
         private Dirt[] dirtFields = new Dirt[4];
         private MouseState prevMouseState, mouseState;
 
-        public Game1()
+        public Main()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            menuManager = new MenuManager();
+            MenuManager = new MenuManager();
         }
 
         /// <summary>
@@ -55,13 +56,15 @@ namespace MonoGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            PlantFactory.LoadContent(Content);
+
             for (int i = 0; i < dirtFields.Length; i++)
             {
-                dirtFields[i] = new Dirt(new Vector2(50 + i * 200, 50), 180, 180);
+                dirtFields[i] = new Dirt(this, new Vector2(50 + i * 200, 50), 180, 180);
                 dirtFields[i].LoadContent(Content);
             }
 
-            menuManager.LoadContent(graphics, Content);
+            MenuManager.LoadContent(graphics, Content);
 
             //Alle plaatjes van de vruchten
             plantzaadjesImage = Content.Load<Texture2D>("Images/plantzaadjes");
@@ -76,7 +79,7 @@ namespace MonoGame
         /// </summary>
         protected override void UnloadContent()
         {
-            menuManager = null;
+            MenuManager = null;
         }
 
         /// <summary>
@@ -92,9 +95,7 @@ namespace MonoGame
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            menuManager.Update(gameTime, mouseState, prevMouseState);
-
-            if (!menuManager.Collide(mouseState))
+            if (!MenuManager.Collide(mouseState))
             {
                 bool collidedWithDirt = false;
                 foreach (var dirtField in dirtFields)
@@ -103,7 +104,7 @@ namespace MonoGame
                         prevMouseState.LeftButton == ButtonState.Released &&
                         dirtField.CollidesWith(mouseState))
                     {
-                        menuManager.StartMenu(dirtField, mouseState.X, mouseState.Y);
+                        MenuManager.StartMenu(dirtField, mouseState.X, mouseState.Y);
                     }
 
                     if (dirtField.CollidesWith(mouseState))
@@ -112,9 +113,10 @@ namespace MonoGame
 
                 if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released &&
                     !collidedWithDirt)
-                    menuManager.HideMenu();
+                    MenuManager.HideMenu();
             }
 
+            MenuManager.Update(gameTime, mouseState, prevMouseState);
 
             base.Update(gameTime);
         }
@@ -141,7 +143,7 @@ namespace MonoGame
             spriteBatch.Draw(storeButtonImage, new Rectangle(50 + 3 * 200 + (180 - 80), 100 + 180, 80, 80),
                 Color.White);
 
-            menuManager.Draw(spriteBatch);
+            MenuManager.Draw(spriteBatch);
 
             spriteBatch.End();
 
