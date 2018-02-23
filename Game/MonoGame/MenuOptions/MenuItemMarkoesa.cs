@@ -8,7 +8,7 @@ namespace MonoGame.MenuOptions
 {
     class MenuItemMarkoesa : MenuItem
     {
-        public MenuItemMarkoesa(Dirt dirt) : base(PlantList.Mango, dirt)
+        public MenuItemMarkoesa(Dirt dirt) : base(PlantList.Markoesa, dirt)
         {
         }
 

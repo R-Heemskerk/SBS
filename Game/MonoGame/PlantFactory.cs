@@ -36,7 +36,7 @@ namespace MonoGame
             textures.Add(PlantList.Lychees, content.Load<Texture2D>("Images/lychees"));
             textures.Add(PlantList.Granaatappel, content.Load<Texture2D>("Images/granaatappel"));
             textures.Add(PlantList.Mango, content.Load<Texture2D>("Images/mango"));
-            textures.Add(PlantList.Markoesa, content.Load<Texture2D>("Images/Markoesa"));
+            textures.Add(PlantList.Markoesa, content.Load<Texture2D>("Images/markoesa"));
             textures.Add(PlantList.Papaya, content.Load<Texture2D>("Images/papaya"));
             textures.Add(PlantList.Passievrucht, content.Load<Texture2D>("Images/passievrucht"));
         }
@@ -47,6 +47,14 @@ namespace MonoGame
             {
                 case PlantList.Ananas:
                     return new Ananas(textures[PlantList.Ananas]);
+                case PlantList.Mango:
+                    return new Mango(textures[PlantList.Mango]);
+                case PlantList.Markoesa:
+                    return new Markoesa(textures[PlantList.Markoesa]);
+                case PlantList.Papaya:
+                    return new Papaya(textures[PlantList.Papaya]);
+                case PlantList.Passievrucht:
+                    return new Passievrucht(textures[PlantList.Passievrucht]);
 
                 //TODO: Doe dit ook voor alle andere vruchten
 
