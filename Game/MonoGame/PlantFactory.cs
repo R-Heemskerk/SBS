@@ -56,6 +56,21 @@ namespace MonoGame
                 case PlantList.Passievrucht:
                     return new Passievrucht(textures[PlantList.Passievrucht]);
 
+                case PlantList.Avocado:
+                    return new Avocado(textures[PlantList.Avocado]);
+
+                case PlantList.Dragonfruit:
+                    return new Dragonfruit(textures[PlantList.Dragonfruit]);
+
+                case PlantList.Guave:
+                    return new Guave(textures[PlantList.Guave]);
+
+                case PlantList.Lychees:
+                    return new Lychees(textures[PlantList.Lychees]);
+
+                case PlantList.Granaatappel:
+                    return new Granaatappel(textures[PlantList.Granaatappel]);
+
                 //TODO: Doe dit ook voor alle andere vruchten
 
                 default:

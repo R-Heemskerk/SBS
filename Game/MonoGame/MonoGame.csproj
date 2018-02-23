@@ -60,6 +60,11 @@
     <Compile Include="MenuOptions\MenuItemAnanas.cs" />
     <Compile Include="PlantFactory.cs" />
     <Compile Include="Plants\Ananas.cs" />
+    <Compile Include="Plants\Avocado.cs" />
+    <Compile Include="Plants\Dragonfruit.cs" />
+    <Compile Include="Plants\Granaatappel.cs" />
+    <Compile Include="Plants\Guave.cs" />
+    <Compile Include="Plants\Lychees.cs" />
     <Compile Include="Plants\Mango.cs" />
     <Compile Include="Plants\Markoesa.cs" />
     <Compile Include="Plants\Papaya.cs" />
