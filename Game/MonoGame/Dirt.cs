@@ -14,7 +14,7 @@ namespace MonoGame
     {
         public Main Main { get; }
         public Plant Plant { get; set; }
-
+        private Texture2D zaadjes;
         public Dirt(Main main, Vector2 pos, int width, int height)
         {
             this.Main = main;
@@ -26,8 +26,17 @@ namespace MonoGame
         public override void LoadContent(ContentManager content)
         {
             texture = content.Load<Texture2D>("Images/dirt");
+            zaadjes = content.Load<Texture2D>("Images/plantzaadjes");
         }
 
+        public void Update(GameTime gametime)
+        {
+            if (Plant != null)
+            {
+                Plant.Update(gametime);
+            }
+
+        }
         public MenuItem[] MenuOptions()
         {
             //als plant niet aanwezig geef dit
@@ -55,10 +64,21 @@ namespace MonoGame
 
             if (Plant != null)
             {
-                spriteBatch.Draw(Plant.Texture, new Rectangle((int) pos.X, (int) pos.Y, width / 2, height / 2), Color.White);
-                spriteBatch.Draw(Plant.Texture, new Rectangle((int) pos.X, (int) pos.Y + height / 2, width / 2, height / 2), Color.White);
-                spriteBatch.Draw(Plant.Texture, new Rectangle((int) pos.X + width / 2, (int) pos.Y, width / 2, height / 2), Color.White);
-                spriteBatch.Draw(Plant.Texture, new Rectangle((int) pos.X + width / 2, (int) pos.Y + height / 2, width / 2, height / 2), Color.White);
+                if (Plant.GrowTime > 0)
+                {
+                    spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
+                    spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
+                    spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X + width / 2, (int)pos.Y, width / 2, height / 2), Color.White);
+                    spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X + width / 2, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
+                }
+                else
+                {
+
+                    spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
+                    spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
+                    spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X + width / 2, (int)pos.Y, width / 2, height / 2), Color.White);
+                    spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X + width / 2, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
+                }
             }
         }
     }
