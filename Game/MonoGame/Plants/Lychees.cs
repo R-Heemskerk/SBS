@@ -9,7 +9,7 @@ namespace MonoGame.Plants
 {
     class Lychees : Plant
     {
-        public Lychees(Texture2D texture) : base("Lychees", 1000) // 1000 secondes
+        public Lychees(Texture2D texture) : base("Lychees", 60) // 60 secondes
         {
             this.Texture = texture;
         }

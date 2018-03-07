@@ -9,7 +9,7 @@ namespace MonoGame.Plants
 {
     class Markoesa : Plant
     {
-        public Markoesa(Texture2D texture) : base("Markoesa", 1000) // 1000 secondes
+        public Markoesa(Texture2D texture) : base("Markoesa", 60) // 60 secondes
         {
             this.Texture = texture;
         }

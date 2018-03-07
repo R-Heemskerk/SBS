@@ -18,7 +18,7 @@ namespace MonoGame
         protected Plant(string name, int growTime)
         {
             this.Name = name;
-            this.GrowTime = growTime;
+            this.GrowTime = growTime * 1000;
         }
 
         public void Update(GameTime gametime)

@@ -9,7 +9,7 @@ namespace MonoGame.Plants
 {
     class Mango : Plant
     {
-        public Mango(Texture2D texture) : base("Mango", 1000) // 1000 secondes
+        public Mango(Texture2D texture) : base("Mango", 40) // 40 secondes
         {
             this.Texture = texture;
         }
