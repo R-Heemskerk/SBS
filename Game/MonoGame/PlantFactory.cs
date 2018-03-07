@@ -11,6 +11,8 @@ namespace MonoGame
 {
     public enum PlantList
     {
+        Plantzaadjes,
+        Plantje,
         Ananas,
         Avocado,
         Dragonfruit,
@@ -30,6 +32,8 @@ namespace MonoGame
 
         public static void LoadContent(ContentManager content)
         {
+            textures.Add(PlantList.Plantzaadjes, content.Load<Texture2D>("Images/plantzaadjes"));
+            textures.Add(PlantList.Plantje, content.Load<Texture2D>("Images/plantje")); 
             textures.Add(PlantList.Ananas, content.Load<Texture2D>("Images/ananas"));
             textures.Add(PlantList.Avocado, content.Load<Texture2D>("Images/avocado"));
             textures.Add(PlantList.Dragonfruit, content.Load<Texture2D>("Images/dragonfruit"));
@@ -37,7 +41,7 @@ namespace MonoGame
             textures.Add(PlantList.Lychees, content.Load<Texture2D>("Images/lychees"));
             textures.Add(PlantList.Granaatappel, content.Load<Texture2D>("Images/granaatappel"));
             textures.Add(PlantList.Mango, content.Load<Texture2D>("Images/mango"));
-            textures.Add(PlantList.Markoesa, content.Load<Texture2D>("Images/markoesa"));
+            textures.Add(PlantList.Markoesa, content.Load<Texture2D>("Images/Markoesa"));
             textures.Add(PlantList.Papaya, content.Load<Texture2D>("Images/papaya"));
             textures.Add(PlantList.Passievrucht, content.Load<Texture2D>("Images/passievrucht"));
             textures.Add(PlantList.Plantzaadjes, content.Load<Texture2D>("Images/plantzaadjes"));
@@ -49,12 +53,16 @@ namespace MonoGame
             {
                 case PlantList.Ananas:
                     return new Ananas(textures[PlantList.Ananas]);
+
                 case PlantList.Mango:
                     return new Mango(textures[PlantList.Mango]);
+
                 case PlantList.Markoesa:
                     return new Markoesa(textures[PlantList.Markoesa]);
+
                 case PlantList.Papaya:
                     return new Papaya(textures[PlantList.Papaya]);
+
                 case PlantList.Passievrucht:
                     return new Passievrucht(textures[PlantList.Passievrucht]);
 
@@ -71,9 +79,9 @@ namespace MonoGame
                     return new Lychees(textures[PlantList.Lychees]);
 
                 case PlantList.Granaatappel:
-                    return new Granaatappel(textures[PlantList.Granaatappel]);
+                    return new Granaatappel(textures[PlantList.Granaatappel]); 
 
-                //TODO: Doe dit ook voor alle andere vruchten
+                //TODO: eerst moeten de plantzaadjes komen, dan plantje, dan vruchten. 
 
                 default:
                     return null;
