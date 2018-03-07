@@ -22,8 +22,9 @@ namespace MonoGame
         }
 
         public void Update(GameTime gametime)
-        { if(GrowTime > 0)
-          GrowTime -=  gametime.ElapsedGameTime.Milliseconds;
+        {
+            if (GrowTime > 0)
+                GrowTime -= gametime.ElapsedGameTime.Milliseconds;
         }
     }
 }
