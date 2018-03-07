@@ -71,12 +71,9 @@ namespace MonoGame
             {
                 if (GrowTime > Plant.GrowTime / 3 * 2)
                 {
-                    spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
-                    spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
-                    spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X + width / 2, (int)pos.Y, width / 2, height / 2), Color.White);
-                    spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X + width / 2, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
+                    spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X, (int)pos.Y, width, height), Color.White);
                 }
-                else if (Plant.GrowTime > 0)                           
+                else if (GrowTime > 0)                           
                 {
                     spriteBatch.Draw(plantje, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
                     spriteBatch.Draw(plantje, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
