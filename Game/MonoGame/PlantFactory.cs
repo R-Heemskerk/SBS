@@ -22,8 +22,7 @@ namespace MonoGame
         Mango,
         Markoesa,
         Papaya,
-        Passievrucht,
-        Plantzaadjes
+        Passievrucht,      
     }
 
     public static class PlantFactory
@@ -44,7 +43,7 @@ namespace MonoGame
             textures.Add(PlantList.Markoesa, content.Load<Texture2D>("Images/Markoesa"));
             textures.Add(PlantList.Papaya, content.Load<Texture2D>("Images/papaya"));
             textures.Add(PlantList.Passievrucht, content.Load<Texture2D>("Images/passievrucht"));
-            textures.Add(PlantList.Plantzaadjes, content.Load<Texture2D>("Images/plantzaadjes"));
+           
         }
 
         public static Plant GetPlant(PlantList plant)
