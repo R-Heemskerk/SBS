@@ -12,7 +12,7 @@ namespace MonoGame
     public abstract class Plant
     {
         public string Name { get; }
-        public int GrowTime { get; set; }
+        public int GrowTime { get; }
         public Texture2D Texture { get; set; }
 
         protected Plant(string name, int growTime)
@@ -23,8 +23,7 @@ namespace MonoGame
 
         public void Update(GameTime gametime)
         {
-            if (GrowTime > 0)
-                GrowTime -= gametime.ElapsedGameTime.Milliseconds;
+            
         }
     }
 }

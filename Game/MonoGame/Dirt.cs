@@ -14,8 +14,8 @@ namespace MonoGame
     {
         public Main Main { get; }
         public Plant Plant { get; set; }
+        public int GrowTime { get; set; }
         private Texture2D zaadjes, plantje;
-        private int growTime;
         public Dirt(Main main, Vector2 pos, int width, int height)
         {
             this.Main = main;
@@ -36,6 +36,9 @@ namespace MonoGame
             if (Plant != null)
             {
                 Plant.Update(gametime);
+
+                if (GrowTime > 0)
+                    GrowTime -= gametime.ElapsedGameTime.Milliseconds;
             }
 
         }
@@ -66,14 +69,14 @@ namespace MonoGame
 
             if (Plant != null)
             {
-                if (Plant.GrowTime > 0)
+                if (GrowTime > Plant.GrowTime / 3 * 2)
                 {
                     spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
                     spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
                     spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X + width / 2, (int)pos.Y, width / 2, height / 2), Color.White);
                     spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X + width / 2, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
                 }
-                else if (Plant.GrowTime )                           
+                else if (Plant.GrowTime > 0)                           
                 {
                     spriteBatch.Draw(plantje, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
                     spriteBatch.Draw(plantje, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);

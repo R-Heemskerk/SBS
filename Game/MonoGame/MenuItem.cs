@@ -22,6 +22,7 @@ namespace MonoGame
         public void OnClick()
         {
             dirt.Plant = PlantFactory.GetPlant(plant);
+            dirt.GrowTime = PlantFactory.GetPlant(plant).GrowTime;
         }
     }
 }
