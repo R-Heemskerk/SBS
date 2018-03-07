@@ -18,12 +18,13 @@ namespace MonoGame
         protected Plant(string name, int growTime)
         {
             this.Name = name;
-            this.GrowTime = growTime;
+            this.GrowTime = growTime * 1000;
         }
 
         public void Update(GameTime gametime)
-        { if(GrowTime > 0)
-          GrowTime -=  gametime.ElapsedGameTime.Milliseconds;
+        {
+            if (GrowTime > 0)
+                GrowTime -= gametime.ElapsedGameTime.Milliseconds;
         }
     }
 }

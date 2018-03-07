@@ -44,7 +44,8 @@ namespace MonoGame
                         && mouseState.Y >= y + textHeight / 2 + textHeight * i
                         && mouseState.Y <= y + textHeight / 2 + textHeight * (i + 1)
                         && mouseState.LeftButton == ButtonState.Pressed
-                        && prevMouseState.LeftButton == ButtonState.Released)
+                        && prevMouseState.LeftButton == ButtonState.Released
+                        && IsActive)
                     {
                         options[i].OnClick();
                         HideMenu();

@@ -5,7 +5,7 @@ namespace MonoGame.Plants
 {
     class Avocado : Plant
     {
-        public Avocado(Texture2D texture) : base("Avocado", 1000) // 1000 secondes
+        public Avocado(Texture2D texture) : base("Avocado", 45) // 45 secondes
         {
             this.Texture = texture;
         }

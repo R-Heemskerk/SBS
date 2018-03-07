@@ -9,7 +9,7 @@ namespace MonoGame.Plants
 {
     class Guave : Plant
     {
-        public Guave(Texture2D texture) : base("Guave", 1000) // 1000 secondes
+        public Guave(Texture2D texture) : base("Guave", 80) // 80 secondes
         {
             this.Texture = texture;
         }

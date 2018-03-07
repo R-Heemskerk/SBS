@@ -22,7 +22,7 @@ namespace MonoGame
         Mango,
         Markoesa,
         Papaya,
-        Passievrucht,
+        Passievrucht
     }
 
     public static class PlantFactory
