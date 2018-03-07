@@ -105,7 +105,8 @@ namespace MonoGame
                 {
                     if (mouseState.LeftButton == ButtonState.Pressed &&
                         prevMouseState.LeftButton == ButtonState.Released &&
-                        dirtField.CollidesWith(mouseState))
+                        dirtField.CollidesWith(mouseState) &&
+                        dirtField.Plant == null)
                     {
                         MenuManager.StartMenu(dirtField, mouseState.X, mouseState.Y);
                     }
