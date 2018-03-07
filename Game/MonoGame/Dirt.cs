@@ -14,7 +14,8 @@ namespace MonoGame
     {
         public Main Main { get; }
         public Plant Plant { get; set; }
-        private Texture2D zaadjes;
+        private Texture2D zaadjes, plantje;
+        private int growTime;
         public Dirt(Main main, Vector2 pos, int width, int height)
         {
             this.Main = main;
@@ -27,6 +28,7 @@ namespace MonoGame
         {
             texture = content.Load<Texture2D>("Images/dirt");
             zaadjes = content.Load<Texture2D>("Images/plantzaadjes");
+            plantje = content.Load<Texture2D>("Images/plantje");
         }
 
         public void Update(GameTime gametime)
@@ -71,17 +73,19 @@ namespace MonoGame
                     spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X + width / 2, (int)pos.Y, width / 2, height / 2), Color.White);
                     spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X + width / 2, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
                 }
-                else if (Plant.Growtime )
+                else if (Plant.GrowTime )                           
                 {
-
+                    spriteBatch.Draw(plantje, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
+                    spriteBatch.Draw(plantje, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
+                    spriteBatch.Draw(plantje, new Rectangle((int)pos.X + width / 2, (int)pos.Y, width / 2, height / 2), Color.White);
+                    spriteBatch.Draw(plantje, new Rectangle((int)pos.X + width / 2, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
+                }
+                else
+                {
                     spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
                     spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
                     spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X + width / 2, (int)pos.Y, width / 2, height / 2), Color.White);
                     spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X + width / 2, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
-                }
-                else
-                {
-
                 }
             }
         }

@@ -43,6 +43,7 @@ namespace MonoGame
             textures.Add(PlantList.Markoesa, content.Load<Texture2D>("Images/Markoesa"));
             textures.Add(PlantList.Papaya, content.Load<Texture2D>("Images/papaya"));
             textures.Add(PlantList.Passievrucht, content.Load<Texture2D>("Images/passievrucht"));
+
         }
 
         public static Plant GetPlant(PlantList plant)
