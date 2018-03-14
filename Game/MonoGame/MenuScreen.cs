@@ -19,23 +19,23 @@ namespace MonoGame
 
     class MenuScreen
     {
-        public void Update(GameTime gametime)
-        {
-            if (mouseState.LeftButton == ButtonState.Pressed &&
-                prevMouseState.LeftButton == ButtonState.Released &&
-                ic_shopping_basket_black_24dp_2x.CollideWith(mouseState)
-
-            if (Screen = Veld)
-
-
-
-        }
-
-        public static void LoadContent(ContentManager content)
-        {
-            textures.Add(Screen.Inkopen, content.Load<Texture2D>("images/ic_shopping_basket_black_24dp_2x"));
-        }
-
+//        public void Update(GameTime gametime)
+//        {
+//            if (mouseState.LeftButton == ButtonState.Pressed &&
+//                prevMouseState.LeftButton == ButtonState.Released &&
+//                ic_shopping_basket_black_24dp_2x.CollideWith(mouseState)
+//
+//            if (Screen = Veld)
+//
+//
+//
+//        }
+//
+//        public static void LoadContent(ContentManager content)
+//        {
+//            textures.Add(Screen.Inkopen, content.Load<Texture2D>("images/ic_shopping_basket_black_24dp_2x"));
+//        }
+//
 
 
 

@@ -19,6 +19,7 @@ namespace MonoGame
             grassImage;
 
         public MenuManager MenuManager { get; private set; } = null;
+        public StoreManager StoreManager { get; private set; } = null;
 
         private readonly Dirt[] dirtFields = new Dirt[4];
         private MouseState prevMouseState, mouseState;
@@ -29,6 +30,7 @@ namespace MonoGame
             Content.RootDirectory = "Content";
 
             MenuManager = new MenuManager();
+            StoreManager = new StoreManager();
         }
 
         /// <summary>
@@ -65,6 +67,7 @@ namespace MonoGame
             }
 
             MenuManager.LoadContent(graphics, Content);
+            StoreManager.LoadContent(graphics, Content);
 
             //Alle plaatjes van de vruchten
             plantzaadjesImage = Content.Load<Texture2D>("Images/plantzaadjes");
@@ -80,6 +83,7 @@ namespace MonoGame
         protected override void UnloadContent()
         {
             MenuManager = null;
+            StoreManager = null;
         }
 
         /// <summary>
@@ -148,6 +152,7 @@ namespace MonoGame
                 Color.White);
 
             MenuManager.Draw(spriteBatch);
+            StoreManager.Draw(spriteBatch);
 
             spriteBatch.End();
 
