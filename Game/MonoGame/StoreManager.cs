@@ -12,7 +12,7 @@ namespace MonoGame
 {
     public class StoreManager
     {
-        public bool IsActive { get; private set; } = false;
+        public bool IsActive { get; set; } = false;
         private GraphicsDevice graphicsDevice;
         private Texture2D dummyTexture;
         private SpriteFont spriteFont;
@@ -41,5 +41,22 @@ namespace MonoGame
                                       && mouseState.Y >= 50 && mouseState.Y <= graphicsDevice.Viewport.Height - 100 && 
                                       IsActive;
         }
+
+        public void Update(GameTime gametime)
+        {
+            if (IsActive)
+            {
+                 if (mouseState.LeftButton == ButtonState.Pressed &&
+                 prevMouseState.LeftButton == ButtonState.Released &&
+                 !storeButtonRectangle.Contains(mouseState.Position) &&
+                 StoreManager.IsActive)
+                {
+                    StoreManager.IsActive = false;
+                }
+               //update logica.  
+            }
+            
+        }
+          
     }
 }

@@ -18,6 +18,8 @@ namespace MonoGame
             plantjeImage,
             grassImage;
 
+        private Rectangle storeButtonRectangle = new Rectangle(50 + 3 * 200 + (180 - 80), 100 + 180, 80, 80);
+
         public MenuManager MenuManager { get; private set; } = null;
         public StoreManager StoreManager { get; private set; } = null;
 
@@ -131,15 +133,14 @@ namespace MonoGame
 
             if (mouseState.LeftButton == ButtonState.Pressed &&
             prevMouseState.LeftButton == ButtonState.Released &&
-            storeButtonImage.CollidesWith(mouseState) &&
-            storeButtonImage.StoreManager == null)
+            storeButtonRectangle.Contains(mouseState.Position) &&
+            !StoreManager.IsActive)
             {
-                if (storeButtonImage.CollidesWith(mouseState))
-                collidesWithstoreButtonImage = true;
+                StoreManager.IsActive = true;
             }
 
 
-                MenuManager.Update(gameTime, mouseState, prevMouseState);
+            MenuManager.Update(gameTime, mouseState, prevMouseState);
 
             base.Update(gameTime);
         }
@@ -163,7 +164,7 @@ namespace MonoGame
                 field.Draw(spriteBatch);
             }
 
-            spriteBatch.Draw(storeButtonImage, new Rectangle(50 + 3 * 200 + (180 - 80), 100 + 180, 80, 80),
+            spriteBatch.Draw(storeButtonImage, storeButtonRectangle,
                 Color.White);
 
             MenuManager.Draw(spriteBatch);
