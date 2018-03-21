@@ -18,14 +18,12 @@ namespace MonoGame
             plantjeImage,
             grassImage;
 
-        private Rectangle storeButtonRectangle = new Rectangle(50 + 3 * 200 + (180 - 80), 100 + 180, 80, 80);
 
         public MenuManager MenuManager { get; private set; } = null;
         public StoreManager StoreManager { get; private set; } = null;
 
         private readonly Dirt[] dirtFields = new Dirt[4];
         private MouseState prevMouseState, mouseState;
-        private bool collidesWithstoreButtonImage;
 
         public Main()
         {
@@ -105,6 +103,7 @@ namespace MonoGame
             {
                 item.Update(gameTime);
             }
+
             if (!MenuManager.Collide(mouseState))
             {
                 bool collidedWithDirt = false;
@@ -125,22 +124,20 @@ namespace MonoGame
                 if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released &&
                     !collidedWithDirt)
                     MenuManager.HideMenu();
-
-            
             }
-       
-               
+
 
             if (mouseState.LeftButton == ButtonState.Pressed &&
-            prevMouseState.LeftButton == ButtonState.Released &&
-            storeButtonRectangle.Contains(mouseState.Position) &&
-            !StoreManager.IsActive)
+                prevMouseState.LeftButton == ButtonState.Released &&
+                StoreManager.StoreButtonRectangle.Contains(mouseState.Position) &&
+                !StoreManager.IsActive)
             {
                 StoreManager.IsActive = true;
             }
 
 
             MenuManager.Update(gameTime, mouseState, prevMouseState);
+            StoreManager.Update(gameTime, mouseState, prevMouseState);
 
             base.Update(gameTime);
         }
@@ -155,7 +152,9 @@ namespace MonoGame
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(grassImage, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
+            spriteBatch.Draw(grassImage,
+                new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight),
+                Color.White);
 
             //Land renderen
             foreach (var field in dirtFields)
@@ -164,7 +163,7 @@ namespace MonoGame
                 field.Draw(spriteBatch);
             }
 
-            spriteBatch.Draw(storeButtonImage, storeButtonRectangle,
+            spriteBatch.Draw(storeButtonImage, StoreManager.StoreButtonRectangle,
                 Color.White);
 
             MenuManager.Draw(spriteBatch);

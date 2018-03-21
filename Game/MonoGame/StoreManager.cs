@@ -13,15 +13,18 @@ namespace MonoGame
     public class StoreManager
     {
         public bool IsActive { get; set; } = false;
+        public Rectangle StoreButtonRectangle { get; set; }
         private GraphicsDevice graphicsDevice;
         private Texture2D dummyTexture;
         private SpriteFont spriteFont;
+
 
         public void LoadContent(GraphicsDeviceManager graphicsDevice, ContentManager content)
         {
             this.graphicsDevice = graphicsDevice.GraphicsDevice;
             dummyTexture = new Texture2D(graphicsDevice.GraphicsDevice, 1, 1);
             dummyTexture.SetData(new Color[] {Color.White});
+            StoreButtonRectangle = new Rectangle(50 + 3 * 200 + (180 - 80), 100 + 180, 80, 80);
 
             spriteFont = content.Load<SpriteFont>("Arial");
         }
@@ -30,33 +33,32 @@ namespace MonoGame
         {
             if (IsActive)
             {
-                spriteBatch.Draw(dummyTexture, new Rectangle(50, 50, 
+                spriteBatch.Draw(dummyTexture, new Rectangle(50, 50,
                     graphicsDevice.Viewport.Width - 100, graphicsDevice.Viewport.Height - 100), Color.White);
             }
         }
 
         public bool Collide(MouseState mouseState)
         {
-            return mouseState.X >= 50 && mouseState.X <= graphicsDevice.Viewport.Width - 100 
-                                      && mouseState.Y >= 50 && mouseState.Y <= graphicsDevice.Viewport.Height - 100 && 
+            return mouseState.X >= 50 && mouseState.X <= graphicsDevice.Viewport.Width - 50
+                                      && mouseState.Y >= 50 && mouseState.Y <= graphicsDevice.Viewport.Height - 50 &&
                                       IsActive;
         }
 
-        public void Update(GameTime gametime)
+        public void Update(GameTime gameTime, MouseState mouseState, MouseState prevMouseState)
         {
             if (IsActive)
             {
-                 if (mouseState.LeftButton == ButtonState.Pressed &&
-                 prevMouseState.LeftButton == ButtonState.Released &&
-                 !storeButtonRectangle.Contains(mouseState.Position) &&
-                 StoreManager.IsActive)
+                if (mouseState.LeftButton == ButtonState.Pressed &&
+                    prevMouseState.LeftButton == ButtonState.Released &&
+                    !Collide(mouseState) &&
+                    IsActive)
                 {
-                    StoreManager.IsActive = false;
+                    IsActive = false;
                 }
-               //update logica.  
+
+                //update logica.  
             }
-            
         }
-          
     }
 }
