@@ -104,7 +104,7 @@ namespace MonoGame
                 item.Update(gameTime);
             }
 
-            if (!MenuManager.Collide(mouseState))
+            if (!MenuManager.Collide(mouseState) && !StoreManager.IsActive)
             {
                 bool collidedWithDirt = false;
                 foreach (var dirtField in dirtFields)
@@ -130,9 +130,11 @@ namespace MonoGame
             if (mouseState.LeftButton == ButtonState.Pressed &&
                 prevMouseState.LeftButton == ButtonState.Released &&
                 StoreManager.StoreButtonRectangle.Contains(mouseState.Position) &&
+                !MenuManager.IsActive &&
                 !StoreManager.IsActive)
             {
                 StoreManager.IsActive = true;
+                MenuManager.HideMenu();
             }
 
 
