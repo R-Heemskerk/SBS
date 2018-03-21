@@ -24,7 +24,7 @@ namespace MonoGame
 
         private readonly Dirt[] dirtFields = new Dirt[4];
         private MouseState prevMouseState, mouseState;
-        private bool collidedWithStoreManager;
+        private bool collidesWithstoreButtonImage;
 
         public Main()
         {
@@ -125,12 +125,20 @@ namespace MonoGame
                     !collidedWithDirt)
                     MenuManager.HideMenu();
             }
-            if (StoreManager.CollidesWith(mouseState))
+       
+               
+
+            if (mouseState.LeftButton == ButtonState.Pressed &&
+            prevMouseState.LeftButton == ButtonState.Released &&
+            storeButtonImage.CollidesWith(mouseState) &&
+            storeButtonImage.StoreManager == null)
             {
-                collidedWithStoreManager = true;
+                if (storeButtonImage.CollidesWith(mouseState))
+                collidesWithstoreButtonImage = true;
             }
 
-            MenuManager.Update(gameTime, mouseState, prevMouseState);
+
+                MenuManager.Update(gameTime, mouseState, prevMouseState);
 
             base.Update(gameTime);
         }
