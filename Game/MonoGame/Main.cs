@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -23,6 +24,7 @@ namespace MonoGame
 
         private readonly Dirt[] dirtFields = new Dirt[4];
         private MouseState prevMouseState, mouseState;
+        private bool collidedWithStoreManager;
 
         public Main()
         {
@@ -122,6 +124,10 @@ namespace MonoGame
                 if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released &&
                     !collidedWithDirt)
                     MenuManager.HideMenu();
+            }
+            if (StoreManager.CollidesWith(mouseState))
+            {
+                collidedWithStoreManager = true;
             }
 
             MenuManager.Update(gameTime, mouseState, prevMouseState);
