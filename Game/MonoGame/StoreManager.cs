@@ -16,6 +16,9 @@ namespace MonoGame
         private GraphicsDevice graphicsDevice;
         private Texture2D dummyTexture;
         private SpriteFont spriteFont;
+        private object prevMouseState;
+        private object storeButtonRectangle;
+        private object mouseState;
 
         public void LoadContent(GraphicsDeviceManager graphicsDevice, ContentManager content)
         {
@@ -48,12 +51,12 @@ namespace MonoGame
             {
                  if (mouseState.LeftButton == ButtonState.Pressed &&
                  prevMouseState.LeftButton == ButtonState.Released &&
-                 !storeButtonRectangle.Contains(mouseState.Position) &&
-                 StoreManager.IsActive)
+                 !storeButtonRectangle.Contains(mouseState.Position))               
                 {
                     StoreManager.IsActive = false;
                 }
                //update logica.  
+
             }
             
         }
