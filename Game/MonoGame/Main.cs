@@ -17,7 +17,8 @@ namespace MonoGame
         private Texture2D plantzaadjesImage,
             storeButtonImage,
             plantjeImage,
-            grassImage;
+            grassImage,
+            dummyTexture;
 
 
         public MenuManager MenuManager { get; private set; } = null;
@@ -78,6 +79,7 @@ namespace MonoGame
             storeButtonImage = Content.Load<Texture2D>("Images/ic_shopping_basket_black_24dp_2x");
             plantjeImage = Content.Load<Texture2D>("Images/plantje");
             grassImage = Content.Load<Texture2D>("Images/grass");
+            dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
         }
 
         /// <summary>
@@ -177,6 +179,12 @@ namespace MonoGame
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public void showAlert(Color backgroundColor, string title, string body)
+        {
+            spriteBatch.Draw(dummyTexture, new Rectangle(50, 50,
+                GraphicsDevice.Viewport.Width - 100, GraphicsDevice.Viewport.Height - 100), Color.White);
         }
     }
 }
