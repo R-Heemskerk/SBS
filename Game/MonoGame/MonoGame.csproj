@@ -47,7 +47,6 @@
     <Compile Include="DrawableObject.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MenuItem.cs" />
-    <Compile Include="MenuScreen.cs" />
     <Compile Include="Plant.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="MenuOptions\MenuItemAvocado.cs" />

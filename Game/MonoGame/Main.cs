@@ -71,6 +71,8 @@ namespace MonoGame
             MenuManager.LoadContent(graphics, Content);
             StoreManager.LoadContent(graphics, Content);
 
+            StoreManager.SetInventoryAmount(PlantList.Ananas, 10);
+
             //Alle plaatjes van de vruchten
             plantzaadjesImage = Content.Load<Texture2D>("Images/plantzaadjes");
             storeButtonImage = Content.Load<Texture2D>("Images/ic_shopping_basket_black_24dp_2x");
@@ -139,7 +141,7 @@ namespace MonoGame
             }
 
 
-            MenuManager.Update(gameTime, mouseState, prevMouseState);
+            MenuManager.Update(gameTime, this, mouseState, prevMouseState);
             StoreManager.Update(gameTime, mouseState, prevMouseState);
 
             base.Update(gameTime);
@@ -169,7 +171,7 @@ namespace MonoGame
             spriteBatch.Draw(storeButtonImage, StoreManager.StoreButtonRectangle,
                 Color.White);
 
-            MenuManager.Draw(spriteBatch);
+            MenuManager.Draw(spriteBatch, this);
             StoreManager.Draw(spriteBatch);
 
             spriteBatch.End();

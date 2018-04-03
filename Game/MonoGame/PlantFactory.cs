@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Plants;
@@ -28,6 +24,8 @@ namespace MonoGame
     public static class PlantFactory
     {
         private static readonly Dictionary<PlantList, Texture2D> textures = new Dictionary<PlantList, Texture2D>();
+        private static readonly Dictionary<PlantList, int> costPrice = new Dictionary<PlantList, int>();
+        private static readonly Dictionary<PlantList, int> sellPrice = new Dictionary<PlantList, int>();
 
         public static void LoadContent(ContentManager content)
         {
@@ -44,6 +42,27 @@ namespace MonoGame
             textures.Add(PlantList.Papaya, content.Load<Texture2D>("Images/papaya"));
             textures.Add(PlantList.Passievrucht, content.Load<Texture2D>("Images/passievrucht"));
 
+            costPrice.Add(PlantList.Ananas, 1);
+            costPrice.Add(PlantList.Avocado, 2);
+            costPrice.Add(PlantList.Dragonfruit, 5);
+            costPrice.Add(PlantList.Granaatappel, 4);
+            costPrice.Add(PlantList.Guave, 4);
+            costPrice.Add(PlantList.Lychees, 5);
+            costPrice.Add(PlantList.Mango, 3);
+            costPrice.Add(PlantList.Markoesa, 5);
+            costPrice.Add(PlantList.Papaya, 3);
+            costPrice.Add(PlantList.Passievrucht, 4);
+
+            sellPrice.Add(PlantList.Ananas, 4);
+            sellPrice.Add(PlantList.Avocado, 5);
+            sellPrice.Add(PlantList.Dragonfruit, 10);
+            sellPrice.Add(PlantList.Granaatappel, 7);
+            sellPrice.Add(PlantList.Guave, 8);
+            sellPrice.Add(PlantList.Lychees, 9);
+            sellPrice.Add(PlantList.Mango, 6);
+            sellPrice.Add(PlantList.Markoesa, 10);
+            sellPrice.Add(PlantList.Papaya, 7);
+            sellPrice.Add(PlantList.Passievrucht, 6);
         }
 
         public static Plant GetPlant(PlantList plant)
@@ -80,11 +99,19 @@ namespace MonoGame
                 case PlantList.Granaatappel:
                     return new Granaatappel(textures[PlantList.Granaatappel]); 
 
-                //TODO: eerst moeten de plantzaadjes komen, dan plantje, dan vruchten. 
-
                 default:
                     return null;
             }
+        }
+
+        public static int GetCostPrice(PlantList plant)
+        {
+            return costPrice.ContainsKey(plant) ? costPrice[plant] : -1;
+        }
+
+        public static int GetSellPrice(PlantList plant)
+        {
+            return sellPrice.ContainsKey(plant) ? sellPrice[plant] : -1;
         }
     }
 }

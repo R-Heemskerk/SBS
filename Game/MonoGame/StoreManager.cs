@@ -18,6 +18,8 @@ namespace MonoGame
         private Texture2D dummyTexture;
         private SpriteFont spriteFont;
 
+        public int Money { get; set; } = 10;
+        private Dictionary<PlantList, int> plantInventory = new Dictionary<PlantList, int>();
 
         public void LoadContent(GraphicsDeviceManager graphicsDevice, ContentManager content)
         {
@@ -35,6 +37,8 @@ namespace MonoGame
             {
                 spriteBatch.Draw(dummyTexture, new Rectangle(50, 50,
                     graphicsDevice.Viewport.Width - 100, graphicsDevice.Viewport.Height - 100), Color.White);
+
+
             }
         }
 
@@ -59,6 +63,19 @@ namespace MonoGame
 
                 //update logica.  
             }
+        }
+
+        public int GetInventoryAmount(PlantList plant)
+        {
+            return plantInventory.ContainsKey(plant) ? plantInventory[plant] : 0;
+        }
+
+        public void SetInventoryAmount(PlantList plant, int amount)
+        {
+            if (plantInventory.ContainsKey(plant))
+                plantInventory[plant] = amount;
+            else
+                plantInventory.Add(plant, amount);
         }
     }
 }

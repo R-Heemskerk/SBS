@@ -19,10 +19,16 @@ namespace MonoGame
 
         public abstract string GetName();
 
-        public void OnClick()
+        public void OnClick(Main main)
         {
+            main.StoreManager.SetInventoryAmount(plant, main.StoreManager.GetInventoryAmount(plant) - 1);
             dirt.Plant = PlantFactory.GetPlant(plant);
             dirt.GrowTime = PlantFactory.GetPlant(plant).GrowTime;
+        }
+
+        public PlantList GetPlant()
+        {
+            return plant;
         }
     }
 }

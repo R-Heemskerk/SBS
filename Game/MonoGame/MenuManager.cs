@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
@@ -31,7 +27,7 @@ namespace MonoGame
             spriteFont = content.Load<SpriteFont>("Arial");
         }
 
-        public void Update(GameTime gameTime, MouseState mouseState, MouseState prevMouseState)
+        public void Update(GameTime gameTime, Main main, MouseState mouseState, MouseState prevMouseState)
         {
             //check voor collisie / klikken van opties(=zaadjes planten, water geven en grond bemesten)
             if (clickableObject != null)
@@ -47,15 +43,23 @@ namespace MonoGame
                         && prevMouseState.LeftButton == ButtonState.Released
                         && IsActive)
                     {
-                        options[i].OnClick();
-                        HideMenu();
-                        Console.WriteLine("Menu clicked " + options[i].GetName());
+                        if (main.StoreManager.GetInventoryAmount(options[i].GetPlant()) > 0)
+                        {
+                            options[i].OnClick(main);
+                            HideMenu();
+                            Console.WriteLine("Menu clicked " + options[i].GetName());
+                        }
+                        else
+                        {
+                            HideMenu();
+
+                        }
                     }
                 }
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Main main)
         {
             if (IsActive)
             {
@@ -75,7 +79,8 @@ namespace MonoGame
                             new Rectangle(x + margin / 3, y + textHeight / 2 + textHeight * i,
                                 (int) (width - margin / 1.5), 1), Color.LightGray);
 
-                    spriteBatch.DrawString(spriteFont, menuOption.GetName(),
+                    spriteBatch.DrawString(spriteFont, 
+                        menuOption.GetName() + "  (" + main.StoreManager.GetInventoryAmount(menuOption.GetPlant()) + ")",
                         new Vector2(x + margin / 2, y + margin / 2 + textSpace / 2 + textHeight * i),
                         Color.Black);
                 }
@@ -93,7 +98,7 @@ namespace MonoGame
             int maxHeight = 0;
             foreach (var menuOption in clickableObject.MenuOptions())
             {
-                maxWidth = Math.Max(maxWidth, (int) spriteFont.MeasureString(menuOption.GetName()).X);
+                maxWidth = Math.Max(maxWidth, (int) spriteFont.MeasureString(menuOption.GetName() + " (99)").X);
                 maxHeight = Math.Max(maxHeight, (int) spriteFont.MeasureString(menuOption.GetName()).Y);
             }
 
