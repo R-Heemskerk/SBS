@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MenuItem Plant weg.cs" />
     <Compile Include="MenuOptions\MenuItemMango.cs" />
     <Compile Include="IClickableObject.cs" />
     <Compile Include="Dirt.cs" />

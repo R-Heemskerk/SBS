@@ -17,9 +17,14 @@ namespace MonoGame
             this.dirt = dirt;
         }
 
+        protected MenuItem(Dirt dirt)
+        {
+            this.dirt = dirt;
+        }
+
         public abstract string GetName();
 
-        public void OnClick(Main main)
+        public virtual void OnClick(Main main)
         {
             main.StoreManager.SetInventoryAmount(plant, main.StoreManager.GetInventoryAmount(plant) - 1);
             dirt.Plant = PlantFactory.GetPlant(plant);

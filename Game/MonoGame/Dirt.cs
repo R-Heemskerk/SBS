@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MonoGame.MenuOptions;
+using Microsoft.Xna.Framework.Input;
 
 namespace MonoGame
 {
@@ -16,6 +17,9 @@ namespace MonoGame
         public Plant Plant { get; set; }
         public int GrowTime { get; set; }
         private Texture2D zaadjes, plantje;
+        private MouseState mouseState, prevMouseState;
+        private bool collidedWithDirt;
+
         public Dirt(Main main, Vector2 pos, int width, int height)
         {
             this.Main = main;
@@ -41,16 +45,24 @@ namespace MonoGame
                     GrowTime -= gametime.ElapsedGameTime.Milliseconds;
             }
 
+          
+
         }
         public MenuItem[] MenuOptions()
         {
-            //als plant niet aanwezig geef dit
-            return new MenuItem[]
-            {
-                new MenuItemAnanas(this), new MenuItemMango(this), new MenuItemDragonfruit(this), new MenuItemAvocado(this), new MenuItemGranaatappel(this),
-                new MenuItemGuave(this), new MenuItemLychees(this), new MenuItemMarkoesa(this), new MenuItemPapaya(this), new MenuItemPassievrucht(this)
-            };
 
+            //als plant niet aanwezig geef dit
+            if (Plant == null)
+                return new MenuItem[]
+                {
+                    new MenuItemAnanas(this), new MenuItemMango(this), new MenuItemDragonfruit(this), new MenuItemAvocado(this), new MenuItemGranaatappel(this),
+                    new MenuItemGuave(this), new MenuItemLychees(this), new MenuItemMarkoesa(this), new MenuItemPapaya(this), new MenuItemPassievrucht(this)
+                };
+            else
+                return new MenuItem[]
+                {
+                    new MenuItem_Plant_weg(this)
+                };
             //Ander van plant
         }
 
@@ -73,7 +85,7 @@ namespace MonoGame
                 {
                     spriteBatch.Draw(zaadjes, new Rectangle((int)pos.X, (int)pos.Y, width, height), Color.White);
                 }
-                else if (GrowTime > 0)                           
+                else if (GrowTime > 0)
                 {
                     spriteBatch.Draw(plantje, new Rectangle((int)pos.X, (int)pos.Y, width / 2, height / 2), Color.White);
                     spriteBatch.Draw(plantje, new Rectangle((int)pos.X, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
@@ -88,6 +100,7 @@ namespace MonoGame
                     spriteBatch.Draw(Plant.Texture, new Rectangle((int)pos.X + width / 2, (int)pos.Y + height / 2, width / 2, height / 2), Color.White);
                 }
             }
+
         }
     }
 }
