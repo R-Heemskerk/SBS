@@ -104,6 +104,7 @@ namespace MonoGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
             foreach (Dirt item in dirtFields)
             {
                 item.Update(gameTime);

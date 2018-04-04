@@ -61,7 +61,7 @@ namespace MonoGame
             else
                 return new MenuItem[]
                 {
-                    new MenuItem_Plant_weg(this)
+                    new MenuItemHarvest(this)
                 };
             //Ander van plant
         }

@@ -9,7 +9,7 @@ namespace MonoGame.Plants
 {
     class Passievrucht : Plant
     {
-        public Passievrucht(Texture2D texture) : base("Passievrucht", 40) // 40 secondes
+        public Passievrucht(Texture2D texture) : base(PlantList.Passievrucht, "Passievrucht", 40) // 40 secondes
         {
             this.Texture = texture;
         }

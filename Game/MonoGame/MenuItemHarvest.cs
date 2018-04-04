@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MonoGame
 {
-    public class MenuItem_Plant_weg : MenuItem
+    public class MenuItemHarvest : MenuItem
     {
-        public MenuItem_Plant_weg(Dirt dirt) : base(dirt)
+        public MenuItemHarvest(Dirt dirt) : base(dirt, true)
         {
         }
 
@@ -21,6 +21,7 @@ namespace MonoGame
         {
             if (dirt.GrowTime <= 0)
             {
+                main.StoreManager.SetInventoryAmount(dirt.Plant.PlantList, main.StoreManager.GetInventoryAmount(dirt.Plant.PlantList) + 1);
                 dirt.Plant = null;
             }
         }

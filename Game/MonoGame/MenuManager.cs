@@ -51,8 +51,9 @@ namespace MonoGame
                         }
                         else
                         {
+                            options[i].OnClick(main);
                             HideMenu();
-
+                            Console.WriteLine("Menu clicked " + options[i].GetName());
                         }
                     }
                 }
@@ -80,7 +81,7 @@ namespace MonoGame
                                 (int) (width - margin / 1.5), 1), Color.LightGray);
 
                     spriteBatch.DrawString(spriteFont, 
-                        menuOption.GetName() + "  (" + main.StoreManager.GetInventoryAmount(menuOption.GetPlant()) + ")",
+                        menuOption.GetName() + (menuOption.IsSubAction() ? "" : "  (" + main.StoreManager.GetInventoryAmount(menuOption.GetPlant()) + ")"),
                         new Vector2(x + margin / 2, y + margin / 2 + textSpace / 2 + textHeight * i),
                         Color.Black);
                 }

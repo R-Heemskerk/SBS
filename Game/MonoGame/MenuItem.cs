@@ -10,11 +10,19 @@ namespace MonoGame
     {
         protected PlantList plant;
         protected Dirt dirt;
+        protected Boolean action;
 
         protected MenuItem(PlantList plant, Dirt dirt)
         {
             this.plant = plant;
             this.dirt = dirt;
+            this.action = false;
+        }
+
+        protected MenuItem(Dirt dirt, Boolean action)
+        {
+            this.dirt = dirt;
+            this.action = action;
         }
 
         protected MenuItem(Dirt dirt)
@@ -34,6 +42,11 @@ namespace MonoGame
         public PlantList GetPlant()
         {
             return plant;
+        }
+
+        public Boolean IsSubAction()
+        {
+            return action;
         }
     }
 }

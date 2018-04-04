@@ -9,7 +9,7 @@ namespace MonoGame.Plants
 {
     class Granaatappel : Plant
     {
-        public Granaatappel(Texture2D texture) : base("Granaatappel", 60) // 60 secondes
+        public Granaatappel(Texture2D texture) : base(PlantList.Granaatappel, "Granaatappel", 60) // 60 secondes
         {
             this.Texture = texture;
         }
