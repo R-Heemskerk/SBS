@@ -19,13 +19,16 @@ namespace MonoGame
             plantjeImage,
             grassImage,
             dummyTexture;
-
+        private SpriteFont titleFont, spriteFont;
 
         public MenuManager MenuManager { get; private set; } = null;
         public StoreManager StoreManager { get; private set; } = null;
 
         private readonly Dirt[] dirtFields = new Dirt[4];
         private MouseState prevMouseState, mouseState;
+
+        private Boolean alertActive;
+        private string alertTitle, alertBody;
 
         public Main()
         {
@@ -79,7 +82,12 @@ namespace MonoGame
             storeButtonImage = Content.Load<Texture2D>("Images/ic_shopping_basket_black_24dp_2x");
             plantjeImage = Content.Load<Texture2D>("Images/plantje");
             grassImage = Content.Load<Texture2D>("Images/grass");
-            dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
+
+            titleFont = Content.Load<SpriteFont>("AlertTitle");
+            spriteFont = Content.Load<SpriteFont>("Arial");
+
+            dummyTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
+            dummyTexture.SetData(new Color[] { Color.White });
         }
 
         /// <summary>
@@ -108,6 +116,14 @@ namespace MonoGame
             foreach (Dirt item in dirtFields)
             {
                 item.Update(gameTime);
+            }
+
+            if (alertActive)
+            {
+                if (mouseState.LeftButton == ButtonState.Pressed &&
+                    prevMouseState.LeftButton == ButtonState.Released)
+                    alertActive = false;
+                return;
             }
 
             if (!MenuManager.Collide(mouseState) && !StoreManager.IsActive)
@@ -176,15 +192,32 @@ namespace MonoGame
             MenuManager.Draw(spriteBatch, this);
             StoreManager.Draw(spriteBatch);
 
+            if (alertActive)
+            {
+                spriteBatch.Draw(dummyTexture,
+                    new Rectangle(100, 100, graphics.PreferredBackBufferWidth - 200, graphics.PreferredBackBufferHeight - 200),
+                    Color.White);
+
+                spriteBatch.DrawString(titleFont,
+                    alertTitle, new Vector2(100 + (graphics.PreferredBackBufferWidth - 200) / 2 - (int)(titleFont.MeasureString(alertTitle).X / 2), 120),
+                    Color.Black);
+
+                spriteBatch.DrawString(spriteFont,
+                    alertBody, new Vector2(100 + (graphics.PreferredBackBufferWidth - 200) / 2 - (int)(spriteFont.MeasureString(alertBody).X / 2), 250),
+                    Color.Black);
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
-        public void showAlert(Color backgroundColor, string title, string body)
+        public void ShowAlert(Color backgroundColor, string title, string body)
         {
-            spriteBatch.Draw(dummyTexture, new Rectangle(50, 50,
-                GraphicsDevice.Viewport.Width - 100, GraphicsDevice.Viewport.Height - 100), Color.White);
+            alertTitle = title;
+            alertBody = body;
+            dummyTexture.SetData(new Color[] { backgroundColor });
+            alertActive = true;
         }
     }
 }

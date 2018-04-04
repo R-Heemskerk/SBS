@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 
 namespace MonoGame
 {
@@ -34,9 +35,16 @@ namespace MonoGame
 
         public virtual void OnClick(Main main)
         {
-            main.StoreManager.SetInventoryAmount(plant, main.StoreManager.GetInventoryAmount(plant) - 1);
-            dirt.Plant = PlantFactory.GetPlant(plant);
-            dirt.GrowTime = PlantFactory.GetPlant(plant).GrowTime;
+            if (main.StoreManager.GetInventoryAmount(plant) > 0)
+            {
+                main.StoreManager.SetInventoryAmount(plant, main.StoreManager.GetInventoryAmount(plant) - 1);
+                dirt.Plant = PlantFactory.GetPlant(plant);
+                dirt.GrowTime = PlantFactory.GetPlant(plant).GrowTime;
+            }
+            else
+            {
+                main.ShowAlert(Color.Crimson, "Je hebt niet genoeg zaadjes!", "Je hebt niet genoeg " + plant + " zaadjes.\n\nJe kan meer zaadjes kopen in de winkel\ndoor rechts onderin op het mandje te klikken.");
+            }
         }
 
         public PlantList GetPlant()

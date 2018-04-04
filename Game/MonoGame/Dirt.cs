@@ -39,8 +39,6 @@ namespace MonoGame
         {
             if (Plant != null)
             {
-                Plant.Update(gametime);
-
                 if (GrowTime > 0)
                     GrowTime -= gametime.ElapsedGameTime.Milliseconds;
             }

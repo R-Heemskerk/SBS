@@ -43,18 +43,9 @@ namespace MonoGame
                         && prevMouseState.LeftButton == ButtonState.Released
                         && IsActive)
                     {
-                        if (main.StoreManager.GetInventoryAmount(options[i].GetPlant()) > 0)
-                        {
-                            options[i].OnClick(main);
-                            HideMenu();
-                            Console.WriteLine("Menu clicked " + options[i].GetName());
-                        }
-                        else
-                        {
-                            options[i].OnClick(main);
-                            HideMenu();
-                            Console.WriteLine("Menu clicked " + options[i].GetName());
-                        }
+                        options[i].OnClick(main);
+                        HideMenu();
+                        Console.WriteLine("Menu clicked " + options[i].GetName());
                     }
                 }
             }

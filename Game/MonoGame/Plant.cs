@@ -22,10 +22,5 @@ namespace MonoGame
             this.Name = name;
             this.GrowTime = growTime * 1000;
         }
-
-        public void Update(GameTime gametime)
-        {
-            
-        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 
 namespace MonoGame
 {
@@ -23,6 +24,10 @@ namespace MonoGame
             {
                 main.StoreManager.SetInventoryAmount(dirt.Plant.PlantList, main.StoreManager.GetInventoryAmount(dirt.Plant.PlantList) + 1);
                 dirt.Plant = null;
+            }
+            else
+            {
+                main.ShowAlert(Color.Crimson, "De plant is nog niet volgroeid!", "Je kan deze plant nog niet oogstenwant deze plant is nog niet volgroeid.\nWacht nog even totdat de vrucht tot uiting komt.");
             }
         }
     }

@@ -200,3 +200,10 @@
 /processorParam:TextureFormat=Color
 /build:Images/dragonfruit.png
 
+#begin AlertTitle.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:AlertTitle.spritefont
+
