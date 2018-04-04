@@ -43,7 +43,7 @@ namespace MonoGame
             }
             else
             {
-                main.ShowAlert(Color.Salmon, "Je hebt niet genoeg zaadjes!", "Je hebt niet genoeg " + plant + " zaadjes.\n\nJe kan meer zaadjes kopen in de winkel\ndoor rechts onderin op het mandje te klikken.");
+                main.ShowAlert(Constants.DangerColor, "Je hebt niet genoeg zaadjes!", "Je hebt niet genoeg " + plant + " zaadjes.\n\nJe kan meer zaadjes kopen in de winkel\ndoor rechts onderin op het mandje te klikken.");
             }
         }
 

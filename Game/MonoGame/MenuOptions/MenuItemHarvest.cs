@@ -27,7 +27,7 @@ namespace MonoGame
             }
             else
             {
-                main.ShowAlert(Color.Salmon, "De plant is nog niet volgroeid!", "Je kan deze plant nog niet oogsten want deze plant is nog niet volgroeid.\nWacht nog even totdat de vrucht tot uiting komt.");
+                main.ShowAlert(Constants.DangerColor, "De plant is nog niet volgroeid!", "Je kan deze plant nog niet oogsten want deze plant is nog niet volgroeid.\nWacht nog even totdat de vrucht tot uiting komt.");
             }
         }
     }
