@@ -22,12 +22,12 @@ namespace MonoGame
         {
             if (dirt.GrowTime <= 0)
             {
-                main.StoreManager.SetInventoryAmount(dirt.Plant.PlantList, main.StoreManager.GetInventoryAmount(dirt.Plant.PlantList) + 1);
+                main.StoreManager.SetInventoryAmount(dirt.Plant.PlantList, main.StoreManager.GetInventoryAmount(dirt.Plant.PlantList) + 4);
                 dirt.Plant = null;
             }
             else
             {
-                main.ShowAlert(Color.Crimson, "De plant is nog niet volgroeid!", "Je kan deze plant nog niet oogsten want deze plant is nog niet volgroeid.\nWacht nog even totdat de vrucht tot uiting komt.");
+                main.ShowAlert(Color.Salmon, "De plant is nog niet volgroeid!", "Je kan deze plant nog niet oogsten want deze plant is nog niet volgroeid.\nWacht nog even totdat de vrucht tot uiting komt.");
             }
         }
     }

@@ -16,9 +16,10 @@ namespace MonoGame
 
         private Texture2D plantzaadjesImage,
             storeButtonImage,
-            plantjeImage,
             grassImage,
-            dummyTexture;
+            dummyTexture,
+            closeImage;
+
         private SpriteFont titleFont, spriteFont;
 
         public MenuManager MenuManager { get; private set; } = null;
@@ -80,8 +81,8 @@ namespace MonoGame
             //Alle plaatjes van de vruchten
             plantzaadjesImage = Content.Load<Texture2D>("Images/plantzaadjes");
             storeButtonImage = Content.Load<Texture2D>("Images/ic_shopping_basket_black_24dp_2x");
-            plantjeImage = Content.Load<Texture2D>("Images/plantje");
             grassImage = Content.Load<Texture2D>("Images/grass");
+            closeImage = Content.Load<Texture2D>("Images/close_black");
 
             titleFont = Content.Load<SpriteFont>("AlertTitle");
             spriteFont = Content.Load<SpriteFont>("Arial");
@@ -205,6 +206,10 @@ namespace MonoGame
                 spriteBatch.DrawString(spriteFont,
                     alertBody, new Vector2(100 + (graphics.PreferredBackBufferWidth - 200) / 2 - (int)(spriteFont.MeasureString(alertBody).X / 2), 250),
                     Color.Black);
+
+                spriteBatch.Draw(closeImage,
+                    new Rectangle(100 + graphics.PreferredBackBufferWidth - 255, 115, 40, 40),
+                    Color.White);
             }
 
             spriteBatch.End();
