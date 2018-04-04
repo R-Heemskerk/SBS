@@ -41,7 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MenuItemHarvest.cs" />
+    <Compile Include="MenuOptions\MenuItemHarvest.cs" />
     <Compile Include="MenuOptions\MenuItemMango.cs" />
     <Compile Include="IClickableObject.cs" />
     <Compile Include="Dirt.cs" />
