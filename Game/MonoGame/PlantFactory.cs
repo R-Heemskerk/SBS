@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Plants;
@@ -7,8 +8,8 @@ namespace MonoGame
 {
     public enum PlantList
     {
-        Plantzaadjes,
-        Plantje,
+//        Plantzaadjes,
+//        Plantje,
         Ananas,
         Avocado,
         Dragonfruit,
@@ -23,14 +24,29 @@ namespace MonoGame
 
     public static class PlantFactory
     {
+        public static List<PlantList> Plants { get; private set; }
         private static readonly Dictionary<PlantList, Texture2D> textures = new Dictionary<PlantList, Texture2D>();
         private static readonly Dictionary<PlantList, int> costPrice = new Dictionary<PlantList, int>();
         private static readonly Dictionary<PlantList, int> sellPrice = new Dictionary<PlantList, int>();
 
         public static void LoadContent(ContentManager content)
         {
-            textures.Add(PlantList.Plantzaadjes, content.Load<Texture2D>("Images/plantzaadjes"));
-            textures.Add(PlantList.Plantje, content.Load<Texture2D>("Images/plantje")); 
+            Plants = new List<PlantList>
+            {
+                PlantList.Ananas,
+                PlantList.Avocado,
+                PlantList.Dragonfruit,
+                PlantList.Guave,
+                PlantList.Lychees,
+                PlantList.Granaatappel,
+                PlantList.Mango,
+                PlantList.Markoesa,
+                PlantList.Papaya,
+                PlantList.Passievrucht
+            };
+
+            //            textures.Add(PlantList.Plantzaadjes, content.Load<Texture2D>("Images/plantzaadjes"));
+            //            textures.Add(PlantList.Plantje, content.Load<Texture2D>("Images/plantje")); 
             textures.Add(PlantList.Ananas, content.Load<Texture2D>("Images/ananas"));
             textures.Add(PlantList.Avocado, content.Load<Texture2D>("Images/avocado"));
             textures.Add(PlantList.Dragonfruit, content.Load<Texture2D>("Images/dragonfruit"));

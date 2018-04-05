@@ -42,10 +42,8 @@ namespace MonoGame
                 if (GrowTime > 0)
                     GrowTime -= gametime.ElapsedGameTime.Milliseconds;
             }
-
-          
-
         }
+
         public MenuItem[] MenuOptions()
         {
 
@@ -63,15 +61,6 @@ namespace MonoGame
                 };
             //Ander van plant
         }
-
-        /**
-         * Misschien niet meer nodig omdat het sluiten van het menu al gebeurd door de MenuManager
-         *
-        public void CloseMenu()
-        {
-            Main.MenuManager.HideMenu();
-        }
-        */
 
         public override void Draw(SpriteBatch spriteBatch)
         {
