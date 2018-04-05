@@ -56,7 +56,7 @@ namespace MonoGame
             }
 
             int index = 0;
-            int maxIndex = Enum.GetNames(typeof(PlantList)).Length;
+            int maxIndex = PlantFactory.Plants.Count;
             int cellWidth = menuWidth / 4;
             int cellHeigth = menuHeight / 3;
 
