@@ -35,15 +35,15 @@ namespace MonoGame
 
         public virtual void OnClick(Main main)
         {
-            if (main.StoreManager.GetInventoryAmount(plant) > 0)
+            if (main.StoreManager.GetSeedInventoryAmount(plant) > 0)
             {
-                main.StoreManager.SetInventoryAmount(plant, main.StoreManager.GetInventoryAmount(plant) - 1);
+                main.StoreManager.SetSeedInventoryAmount(plant, main.StoreManager.GetSeedInventoryAmount(plant) - 1);
                 dirt.Plant = PlantFactory.GetPlant(plant);
                 dirt.GrowTime = PlantFactory.GetPlant(plant).GrowTime;
             }
             else
             {
-                main.ShowAlert(Constants.DangerColor, Strings.ErrorNotEnoughSeedsTitle, Strings.ErrorNotEnoughSeedsBody.Replace("%%PLANT", plant.ToString()));
+                main.ShowAlert(Constants.DangerColor, Strings.ErrorNotEnoughSeeds, Strings.ErrorNotEnoughSeedsBody.Replace("%%PLANT", plant.ToString()));
             }
         }
 

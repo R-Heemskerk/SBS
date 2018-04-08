@@ -22,12 +22,12 @@ namespace MonoGame
         {
             if (dirt.GrowTime <= 0)
             {
-                main.StoreManager.SetInventoryAmount(dirt.Plant.PlantList, main.StoreManager.GetInventoryAmount(dirt.Plant.PlantList) + 4);
+                main.StoreManager.SetInventoryAmount(dirt.Plant.PlantList, main.StoreManager.GetInventoryAmount(dirt.Plant.PlantList) + 1);
                 dirt.Plant = null;
             }
             else
             {
-                main.ShowAlert(Constants.DangerColor, Strings.ErrorHarvestTitle, Strings.ErrorHarvestBody);
+                main.ShowAlert(Constants.DangerColor, Strings.ErrorHarvest, Strings.ErrorHarvestBody);
             }
         }
     }

@@ -20,6 +20,7 @@ namespace MonoGame
 
         public int Money { get; set; } = 10;
         private Dictionary<PlantList, int> plantInventory = new Dictionary<PlantList, int>();
+        private Dictionary<PlantList, int> plantSeedInventory = new Dictionary<PlantList, int>();
 
         public void LoadContent(GraphicsDeviceManager graphicsDevice, ContentManager content)
         {
@@ -70,31 +71,42 @@ namespace MonoGame
                     {
                         text = "Geld: " + Money;
                         spriteBatch.DrawString(titleFont, text,
-                            new Vector2(50 + (int)cellWidth / 2 - (int)(titleFont.MeasureString(text).X / 2), 
-                                50 + (int)cellHeigth / 2 - (int)(titleFont.MeasureString(text).Y / 2)), Color.Black);
+                            new Vector2(50 + (int) cellWidth / 2 - (int) (titleFont.MeasureString(text).X / 2),
+                                50 + (int) cellHeigth / 2 - (int) (titleFont.MeasureString(text).Y / 2)), Color.Black);
                     }
 
                     if (row == 0 && (column < 1 || column > 2)) continue;
 
-                    text = PlantFactory.GetPlant(PlantFactory.Plants[index]).Name + " (" + GetInventoryAmount(PlantFactory.Plants[index]) + ")";
-                    spriteBatch.DrawString(spriteFont, text, 
-                        new Vector2(50 + (int)cellWidth / 2 - (int)(spriteFont.MeasureString(text).X / 2) + cellWidth * column, 50 + 10 + cellHeigth * row), Color.Black);
+                    text = PlantFactory.GetPlant(PlantFactory.Plants[index]).Name;
+                    spriteBatch.DrawString(spriteFont, text,
+                        new Vector2(50 + (int) cellWidth / 2 - (int) (spriteFont.MeasureString(text).X / 2) + cellWidth * column, 50 + 10 + cellHeigth * row), Color.Black);
 
-                    spriteBatch.Draw(PlantFactory.GetPlant(PlantFactory.Plants[index]).Texture, 
-                        new Rectangle(50 + (int)cellWidth / 2 - 25 + cellWidth * column, 80 + 10 + (int)cellHeigth * row, 50, 50), 
+                    text = "Zaadjes: " + GetSeedInventoryAmount(PlantFactory.Plants[index]); 
+                    spriteBatch.DrawString(spriteFont, text,
+                        new Vector2(50 + (int)cellWidth / 2 - (int)(spriteFont.MeasureString(text).X / 2) + cellWidth * column, 50 + 30 + cellHeigth * row), Color.Black);
+
+                    text = "Vruchten: " + GetInventoryAmount(PlantFactory.Plants[index]);
+                    spriteBatch.DrawString(spriteFont, text,
+                        new Vector2(50 + (int)cellWidth / 2 - (int)(spriteFont.MeasureString(text).X / 2) + cellWidth * column, 50 + 50 + cellHeigth * row), Color.Black);
+
+                    spriteBatch.Draw(PlantFactory.GetPlant(PlantFactory.Plants[index]).Texture,
+                        new Rectangle(50 + (int) cellWidth / 2 - 25 + cellWidth * column, 80 + 50 + (int) cellHeigth * row, 50, 50),
                         Color.White);
 
-                    text = "Kopen: " + "10";
-                    spriteBatch.Draw(dummyTexture, 
-                        new Rectangle(50 + 5 + cellWidth * column, 50 + (int)cellHeigth - 30 + cellHeigth * row, (int)cellWidth / 2 - 15, (int)(spriteFont.MeasureString(text).Y) + 4), 
+                    text = "Kopen: " + PlantFactory.GetCostPrice(PlantFactory.Plants[index]);
+                    spriteBatch.Draw(dummyTexture,
+                        new Rectangle(50 + 5 + cellWidth * column, 50 + (int) cellHeigth - 30 + cellHeigth * row, (int) cellWidth / 2 - 15,
+                            (int) (spriteFont.MeasureString(text).Y) + 4),
                         Color.LightBlue);
-                    spriteBatch.DrawString(spriteFont, text, new Vector2(50 + 10 + cellWidth * column, 50 + (int)cellHeigth - 28 + cellHeigth * row), Color.Black);
+                    spriteBatch.DrawString(spriteFont, text, new Vector2(50 + 10 + cellWidth * column, 50 + (int) cellHeigth - 28 + cellHeigth * row), Color.Black);
 
-                    text = "Verkopen: " + "10";
-                    spriteBatch.Draw(dummyTexture, 
-                        new Rectangle(48 + (int)cellWidth / 2 + cellWidth * column, 50 + (int)cellHeigth - 30 + cellHeigth * row, (int)cellWidth / 2, (int)(spriteFont.MeasureString(text).Y) + 4), 
+                    text = "Verkopen: " + PlantFactory.GetSellPrice(PlantFactory.Plants[index]);
+                    spriteBatch.Draw(dummyTexture,
+                        new Rectangle(48 + (int) cellWidth / 2 + cellWidth * column, 50 + (int) cellHeigth - 30 + cellHeigth * row, (int) cellWidth / 2,
+                            (int) (spriteFont.MeasureString(text).Y) + 4),
                         Color.LightBlue);
-                    spriteBatch.DrawString(spriteFont, text, new Vector2(50 + (int)cellWidth / 2 + cellWidth * column, 50 + (int)cellHeigth - 28 + cellHeigth * row), Color.Black);
+                    spriteBatch.DrawString(spriteFont, text, new Vector2(50 + (int) cellWidth / 2 + cellWidth * column, 50 + (int) cellHeigth - 28 + cellHeigth * row),
+                        Color.Black);
 
                     index++;
 
@@ -121,7 +133,7 @@ namespace MonoGame
             return mouseState.X >= x && mouseState.X <= x2 && mouseState.Y >= y && mouseState.Y <= y2 && IsActive;
         }
 
-        public void Update(GameTime gameTime, MouseState mouseState, MouseState prevMouseState)
+        public void Update(Main main, GameTime gameTime, MouseState mouseState, MouseState prevMouseState)
         {
             if (IsActive)
             {
@@ -131,6 +143,63 @@ namespace MonoGame
                     IsActive)
                 {
                     IsActive = false;
+                }
+
+                if (mouseState.LeftButton == ButtonState.Pressed &&
+                    prevMouseState.LeftButton == ButtonState.Released &&
+                    IsActive)
+                {
+                    int menuWidth = graphicsDevice.Viewport.Width - 100;
+                    int menuHeight = graphicsDevice.Viewport.Height - 100;
+                    int index = 0;
+                    int maxIndex = PlantFactory.Plants.Count;
+                    int cellWidth = menuWidth / 4;
+                    int cellHeigth = menuHeight / 3;
+
+                    for (int row = 0; row < 3; row++)
+                    {
+                        for (int column = 0; column < 4; column++)
+                        {
+                            if (row == 0 && (column < 1 || column > 2)) continue;
+
+                            PlantList plant = PlantFactory.Plants[index];
+                            String text = "Placeholder";
+
+                            Rectangle buyRectangle = new Rectangle(50 + 5 + cellWidth * column, 50 + (int)cellHeigth - 30 + cellHeigth * row, (int)cellWidth / 2 - 15,
+                                (int)(spriteFont.MeasureString(text).Y) + 4);
+                            Rectangle sellRectangle = new Rectangle(48 + (int)cellWidth / 2 + cellWidth * column, 50 + (int)cellHeigth - 30 + cellHeigth * row, (int)cellWidth / 2,
+                                (int)(spriteFont.MeasureString(text).Y) + 4);
+                            if (buyRectangle.Intersects(new Rectangle(mouseState.X, mouseState.Y, 1, 1)))
+                            {
+                                if (Money >= PlantFactory.GetCostPrice(plant))
+                                {
+                                    SetSeedInventoryAmount(plant, GetSeedInventoryAmount(plant) + 1);
+                                    Money -= PlantFactory.GetCostPrice(plant);
+                                }
+                                else
+                                {
+                                    main.ShowAlert(Constants.DangerColor, Strings.ErrorNotEnoughMoney, Strings.ErrorNotEnoughMoneyBody.Replace("%%PLANT", plant.ToString()));
+                                }
+                            }
+                            else if (sellRectangle.Intersects(new Rectangle(mouseState.X, mouseState.Y, 1, 1)))
+                            {
+                                if (GetInventoryAmount(plant) >= 1)
+                                {
+                                    SetInventoryAmount(plant, GetInventoryAmount(plant) - 1);
+                                    Money += PlantFactory.GetSellPrice(plant);
+                                }
+                                else
+                                {
+                                    main.ShowAlert(Constants.DangerColor, Strings.ErrorNotEnoughInventory, Strings.ErrorNotEnoughInventoryBody.Replace("%%PLANT", plant.ToString()));
+                                }
+                            }
+
+                            index++;
+                            if (index >= maxIndex) break;
+                        }
+
+                        if (index >= maxIndex) break;
+                    }
                 }
 
                 //update logica.  
@@ -148,6 +217,19 @@ namespace MonoGame
                 plantInventory[plant] = amount;
             else
                 plantInventory.Add(plant, amount);
+        }
+
+        public int GetSeedInventoryAmount(PlantList plant)
+        {
+            return plantSeedInventory.ContainsKey(plant) ? plantSeedInventory[plant] : 0;
+        }
+
+        public void SetSeedInventoryAmount(PlantList plant, int amount)
+        {
+            if (plantSeedInventory.ContainsKey(plant))
+                plantSeedInventory[plant] = amount;
+            else
+                plantSeedInventory.Add(plant, amount);
         }
     }
 }

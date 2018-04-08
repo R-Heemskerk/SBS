@@ -76,7 +76,7 @@ namespace MonoGame
             MenuManager.LoadContent(graphics, Content);
             StoreManager.LoadContent(graphics, Content);
 
-            StoreManager.SetInventoryAmount(PlantList.Ananas, 10);
+            StoreManager.SetSeedInventoryAmount(PlantList.Ananas, 10);
 
             //Alle plaatjes van de vruchten
             plantzaadjesImage = Content.Load<Texture2D>("Images/plantzaadjes");
@@ -160,8 +160,8 @@ namespace MonoGame
             }
 
 
-            MenuManager.Update(gameTime, this, mouseState, prevMouseState);
-            StoreManager.Update(gameTime, mouseState, prevMouseState);
+            MenuManager.Update(this, gameTime, mouseState, prevMouseState);
+            StoreManager.Update(this, gameTime, mouseState, prevMouseState);
 
             base.Update(gameTime);
         }

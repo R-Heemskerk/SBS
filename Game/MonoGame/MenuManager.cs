@@ -27,7 +27,7 @@ namespace MonoGame
             spriteFont = content.Load<SpriteFont>("Arial");
         }
 
-        public void Update(GameTime gameTime, Main main, MouseState mouseState, MouseState prevMouseState)
+        public void Update(Main main, GameTime gameTime, MouseState mouseState, MouseState prevMouseState)
         {
             //check voor collisie / klikken van opties(=zaadjes planten, water geven en grond bemesten)
             if (clickableObject != null)
@@ -72,7 +72,7 @@ namespace MonoGame
                                 (int) (width - margin / 1.5), 1), Color.LightGray);
 
                     spriteBatch.DrawString(spriteFont, 
-                        menuOption.GetName() + (menuOption.IsSubAction() ? "" : "  (" + main.StoreManager.GetInventoryAmount(menuOption.GetPlant()) + ")"),
+                        menuOption.GetName() + (menuOption.IsSubAction() ? "" : "  (" + main.StoreManager.GetSeedInventoryAmount(menuOption.GetPlant()) + ")"),
                         new Vector2(x + margin / 2, y + margin / 2 + textSpace / 2 + textHeight * i),
                         Color.Black);
                 }
