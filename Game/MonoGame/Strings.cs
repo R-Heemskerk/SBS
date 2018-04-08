@@ -1,5 +1,8 @@
 ﻿namespace MonoGame
 {
+    /// <summary>
+    /// Deze class heeft alle teksten.
+    /// </summary>
     public static class Strings
     {
         public static string ErrorHarvest = "De plant is nog niet volgroeid!",

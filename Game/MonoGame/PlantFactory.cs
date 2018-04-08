@@ -6,6 +6,9 @@ using MonoGame.Plants;
 
 namespace MonoGame
 {
+    /// <summary>
+    /// Een lijst van planten.
+    /// </summary>
     public enum PlantList
     {
 //        Plantzaadjes,
@@ -22,6 +25,9 @@ namespace MonoGame
         Passievrucht
     }
 
+    /// <summary>
+    /// De PlantFactory geeft graphics en instellingen over planten.
+    /// </summary>
     public static class PlantFactory
     {
         public static List<PlantList> Plants { get; private set; }
@@ -29,6 +35,11 @@ namespace MonoGame
         private static readonly Dictionary<PlantList, int> costPrice = new Dictionary<PlantList, int>();
         private static readonly Dictionary<PlantList, int> sellPrice = new Dictionary<PlantList, int>();
 
+        /// <summary>
+        /// Laad alle objecten.
+        /// </summary>
+        /// <param name="content">ContentManager instance van MonoGame</param>
+        /// <seealso cref="ContentManager"/>
         public static void LoadContent(ContentManager content)
         {
             Plants = new List<PlantList>
@@ -81,6 +92,11 @@ namespace MonoGame
             sellPrice.Add(PlantList.Passievrucht, 6);
         }
 
+        /// <summary>
+        /// Krijg de Plant object.
+        /// </summary>
+        /// <param name="plant">De plant waar het over gaat.</param>
+        /// <returns><see cref="Plant"/></returns>
         public static Plant GetPlant(PlantList plant)
         {
             switch (plant)
@@ -120,11 +136,23 @@ namespace MonoGame
             }
         }
 
+        /// <summary>
+        /// Hoeveel kost het om een zaadje te kopen.
+        /// </summary>
+        /// <param name="plant">De plant</param>
+        /// <seealso cref="PlantList"/>
+        /// <returns>Prijs</returns>
         public static int GetCostPrice(PlantList plant)
         {
             return costPrice.ContainsKey(plant) ? costPrice[plant] : -1;
         }
 
+        /// <summary>
+        /// Hoeveel kan er worden verdiend als een vrucht wordt verkocht.
+        /// </summary>
+        /// <param name="plant">De plant</param>
+        /// <seealso cref="PlantList"/>
+        /// <returns>Prijs</returns>
         public static int GetSellPrice(PlantList plant)
         {
             return sellPrice.ContainsKey(plant) ? sellPrice[plant] : -1;

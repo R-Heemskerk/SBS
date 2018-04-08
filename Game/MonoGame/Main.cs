@@ -7,7 +7,8 @@ using Microsoft.Xna.Framework.Input;
 namespace MonoGame
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// Dit is waar de game start. Deze class is de link tussen ons spel en MonoGame. 
+    /// Deze class zorgt ook ervoor dat alle objecten worden geladen en worden weergegeven.
     /// </summary>
     public class Main : Game
     {
@@ -31,6 +32,9 @@ namespace MonoGame
         private Boolean alertActive;
         private string alertTitle, alertBody;
 
+        /// <summary>
+        /// Constructor voor Main
+        /// </summary>
         public Main()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -41,10 +45,7 @@ namespace MonoGame
         }
 
         /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
+        /// Initialize zorgt voor alle instellingen worden geladen voordat het spel start
         /// </summary>
         protected override void Initialize()
         {
@@ -58,8 +59,7 @@ namespace MonoGame
         }
 
         /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
+        /// LoadContent laad alle objecten. Dit gebeurd maar één keer tijdens het laden van het spel.
         /// </summary>
         protected override void LoadContent()
         {
@@ -92,8 +92,7 @@ namespace MonoGame
         }
 
         /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
+        /// UnloadContent zal alle objecten weggooien. Dit wordt alleen geroepen wanneer het spel stopt.
         /// </summary>
         protected override void UnloadContent()
         {
@@ -102,10 +101,11 @@ namespace MonoGame
         }
 
         /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
+        /// Update is het brein van het spel. 
+        /// Dit zorgt ervoor dat alle knoppen werken en dat er interactie zit in het spel.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <seealso cref="GameTime"/>
         protected override void Update(GameTime gameTime)
         {
             prevMouseState = mouseState;
@@ -114,11 +114,14 @@ namespace MonoGame
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            // Alle dirt objecten bijwerken.
             foreach (Dirt item in dirtFields)
             {
                 item.Update(gameTime);
             }
 
+            // Als er een alert actief is zal deze prioriteit hebben en als eerst muis events verwerken. 
+            // Ook wordt de rest van het beeld niet meer klikbaar.
             if (alertActive)
             {
                 if (mouseState.LeftButton == ButtonState.Pressed &&
@@ -127,6 +130,7 @@ namespace MonoGame
                 return;
             }
 
+            // Laat een menu verschijnen als er op een dirt object wordt gedrukt.
             if (!MenuManager.Collide(mouseState) && !StoreManager.IsActive)
             {
                 bool collidedWithDirt = false;
@@ -143,12 +147,13 @@ namespace MonoGame
                         collidedWithDirt = true;
                 }
 
+                // Laat het menu verdwijnen als er buiten het menu wordt gedrukt.
                 if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released &&
                     !collidedWithDirt)
                     MenuManager.HideMenu();
             }
 
-
+            // Laat de winkel zien zodra er op de afbeelding van het winkelmandje wordt gedrukt.
             if (mouseState.LeftButton == ButtonState.Pressed &&
                 prevMouseState.LeftButton == ButtonState.Released &&
                 StoreManager.StoreButtonRectangle.Contains(mouseState.Position) &&
@@ -159,7 +164,7 @@ namespace MonoGame
                 MenuManager.HideMenu();
             }
 
-
+            // Zorgt ervoor dat de menu en de winkel muis events kan verwerken.
             MenuManager.Update(this, gameTime, mouseState, prevMouseState);
             StoreManager.Update(this, gameTime, mouseState, prevMouseState);
 
@@ -167,9 +172,10 @@ namespace MonoGame
         }
 
         /// <summary>
-        /// This is called when the game should draw itself.
+        /// Het tekenen van visuele objecten.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <seealso cref="GameTime"/>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
@@ -180,7 +186,7 @@ namespace MonoGame
                 new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight),
                 Color.White);
 
-            //Land renderen
+            //Dirt renderen
             foreach (var field in dirtFields)
             {
 //                if (!(mouseState.LeftButton == ButtonState.Pressed && field.CollidesWith(mouseState)))
@@ -190,9 +196,11 @@ namespace MonoGame
             spriteBatch.Draw(storeButtonImage, StoreManager.StoreButtonRectangle,
                 Color.White);
 
+            //Menu en winkels renderen
             MenuManager.Draw(spriteBatch, this);
             StoreManager.Draw(spriteBatch);
 
+            // Alert renderen als deze actief is
             if (alertActive)
             {
                 spriteBatch.Draw(dummyTexture,
@@ -217,6 +225,12 @@ namespace MonoGame
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// Actieveer een alert zodat de gebruiker aandacht krijgt.
+        /// </summary>
+        /// <param name="backgroundColor">De kleur van de achtergrond van de alert.</param>
+        /// <param name="title">De titel van de alert.</param>
+        /// <param name="body">De tekst van de alert.</param>
         public void ShowAlert(Color backgroundColor, string title, string body)
         {
             alertTitle = title;
