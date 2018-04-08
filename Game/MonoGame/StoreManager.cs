@@ -16,7 +16,7 @@ namespace MonoGame
         public Rectangle StoreButtonRectangle { get; set; }
         private GraphicsDevice graphicsDevice;
         private Texture2D dummyTexture, closeImage;
-        private SpriteFont spriteFont;
+        private SpriteFont titleFont, spriteFont;
 
         public int Money { get; set; } = 10;
         private Dictionary<PlantList, int> plantInventory = new Dictionary<PlantList, int>();
@@ -30,6 +30,7 @@ namespace MonoGame
 
             StoreButtonRectangle = new Rectangle(50 + 3 * 200 + (180 - 80), 100 + 180, 80, 80);
 
+            titleFont = content.Load<SpriteFont>("AlertTitle");
             spriteFont = content.Load<SpriteFont>("Arial");
         }
 
@@ -46,13 +47,13 @@ namespace MonoGame
             for (int i = 1; i < 4; i++)
             {
                 spriteBatch.Draw(dummyTexture,
-                    new Rectangle(50 + (int) menuWidth / 4 * i, 50, 2, menuHeight), Color.LightGray);
+                    new Rectangle(50 + (int) menuWidth / 4 * i, 50, 1, menuHeight), Color.LightGray);
             }
 
             for (int i = 1; i < 3; i++)
             {
                 spriteBatch.Draw(dummyTexture,
-                    new Rectangle(50, 50 + (int) menuHeight / 3 * i, menuWidth, 2), Color.LightGray);
+                    new Rectangle(50, 50 + (int) menuHeight / 3 * i, menuWidth, 1), Color.LightGray);
             }
 
             int index = 0;
@@ -64,11 +65,36 @@ namespace MonoGame
             {
                 for (int column = 0; column < 4; column++)
                 {
+                    String text = "";
+                    if (row == 0 && column == 0)
+                    {
+                        text = "Geld: " + Money;
+                        spriteBatch.DrawString(titleFont, text,
+                            new Vector2(50 + (int)cellWidth / 2 - (int)(titleFont.MeasureString(text).X / 2), 
+                                50 + (int)cellHeigth / 2 - (int)(titleFont.MeasureString(text).Y / 2)), Color.Black);
+                    }
+
                     if (row == 0 && (column < 1 || column > 2)) continue;
 
+                    text = PlantFactory.GetPlant(PlantFactory.Plants[index]).Name + " (" + GetInventoryAmount(PlantFactory.Plants[index]) + ")";
+                    spriteBatch.DrawString(spriteFont, text, 
+                        new Vector2(50 + (int)cellWidth / 2 - (int)(spriteFont.MeasureString(text).X / 2) + cellWidth * column, 50 + 10 + cellHeigth * row), Color.Black);
+
                     spriteBatch.Draw(PlantFactory.GetPlant(PlantFactory.Plants[index]).Texture, 
-                        new Rectangle(50 + (int)cellWidth / 2 - 25 + cellWidth * column, 50 + 10 + cellHeigth * row, 50, 50), 
+                        new Rectangle(50 + (int)cellWidth / 2 - 25 + cellWidth * column, 80 + 10 + (int)cellHeigth * row, 50, 50), 
                         Color.White);
+
+                    text = "Kopen: " + "10";
+                    spriteBatch.Draw(dummyTexture, 
+                        new Rectangle(50 + 5 + cellWidth * column, 50 + (int)cellHeigth - 30 + cellHeigth * row, (int)cellWidth / 2 - 15, (int)(spriteFont.MeasureString(text).Y) + 4), 
+                        Color.LightBlue);
+                    spriteBatch.DrawString(spriteFont, text, new Vector2(50 + 10 + cellWidth * column, 50 + (int)cellHeigth - 28 + cellHeigth * row), Color.Black);
+
+                    text = "Verkopen: " + "10";
+                    spriteBatch.Draw(dummyTexture, 
+                        new Rectangle(48 + (int)cellWidth / 2 + cellWidth * column, 50 + (int)cellHeigth - 30 + cellHeigth * row, (int)cellWidth / 2, (int)(spriteFont.MeasureString(text).Y) + 4), 
+                        Color.LightBlue);
+                    spriteBatch.DrawString(spriteFont, text, new Vector2(50 + (int)cellWidth / 2 + cellWidth * column, 50 + (int)cellHeigth - 28 + cellHeigth * row), Color.Black);
 
                     index++;
 
