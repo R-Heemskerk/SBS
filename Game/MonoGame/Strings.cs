@@ -7,7 +7,7 @@
             ErrorNotEnoughSeeds = "Je hebt niet genoeg zaadjes!",
             ErrorNotEnoughSeedsBody = "Je hebt niet genoeg %%PLANT zaadjes.\n\nJe kan meer zaadjes kopen in de winkel\ndoor rechts onderin op het mandje te klikken.",
             ErrorNotEnoughMoney = "Je hebt niet genoeg geld!",
-            ErrorNotEnoughMoneyBody = "Je hebt niet genoeg geld om %%PLANT te kopen.",
+            ErrorNotEnoughMoneyBody = "Je hebt niet genoeg geld om %%PLANT zaadjes te kopen.",
             ErrorNotEnoughInventory = "Je hebt niet genoeg vruchten!",
             ErrorNotEnoughInventoryBody = "Je hebt niet genoeg %%PLANT vruchten om het te verkopen.\n\nKoop eerst zaadjes en plant deze om meer vruchten te krijgen.";
     }
